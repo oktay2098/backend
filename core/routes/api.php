@@ -55,6 +55,9 @@ Route::namespace('Api')->name('api.')->group(function(){
             Route::get('deposit/history', 'UserController@depositHistory');
 
             Route::get('transactions', 'UserController@transactions');
+			Route::get('employeeList', 'EmployeeController@employList');
+            Route::get('employeeDetails/{id}', 'EmployeeController@employDetails');
+            Route::get('workFileDownload/{id}', 'EmployeeController@workFileDownload');
 
 	    });
 	});
