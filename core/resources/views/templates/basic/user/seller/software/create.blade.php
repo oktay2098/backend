@@ -23,7 +23,7 @@
                                             <select class="form-control bg--gray" name="product_type" id="product_type">
                                                     <option selected="" disabled="">@lang('Select Product Type')</option>
                                                 @foreach($productTypes as $proType)
-                                                    <option value="{{__($proType->id)}}">{{__($proType->name)}}</option>
+                                                    <option value="{{__($proType->id)}}" @if($proType->id==1) selected @endif>{{__($proType->name)}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -93,6 +93,14 @@
                                             @endforeach
                                         </div>
 
+                                        <div class="col-xl-6 col-lg-6 form-group conditional-div" id="product_code_div">
+                                            <label>@lang('Product Code')*</label>
+                                            <div class="input-group mb-3">
+                                                <input type="text" class="form-control checkProductCode" name="product_code" value="{{old('product_code')}}" placeholder="@lang('Enter Product Code')" required="">
+                                                
+                                            </div>
+                                            <small class="text-danger product_codeExits"></small>
+                                        </div>
                                         <div class="col-xl-6 col-lg-6 form-group conditional-div">
                                             <label>@lang('Price')*</label>
                                             <div class="input-group mb-3">
@@ -153,7 +161,17 @@
                                                     </div>
                                                 </div>
                                                 <div class="card-body addVerities">
-                                                    
+                                                    <div class="custom-file-wrapper removeVerities">
+                                                        <div class="col-xl-7 col-lg-7">
+                                                            <input type="text" name="product_name[]" id="prdname" value="" class="form-control" placeholder="@lang("Product Name")" >
+                                                        </div>
+                                                        <div class="col-xl-3 col-lg-3">
+                                                            <input type="text" name="inventory[]"  id="prdqty" value="" class="form-control" placeholder="@lang('Inventory')">
+                                                        </div>
+                                                        <div class="col-xl-2 col-lg-2">
+                                                            <button class="btn btn--danger text-white border--rounded removeExtraVerities"><i class="fa fa-times"></i></button>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -224,24 +242,24 @@
     });
 
     
-    $(document).ready(function() {
-        $('.select2').select2({
-            tags: true
-        });
-        var html = `
-                <div class="custom-file-wrapper removeVerities">
-                    <div class="col-xl-7 col-lg-7">
-                        <input type="text" name="product_name[]" id="prdname" maxlength="255" value="{{old('product_name')}}" class="form-control" placeholder="@lang("Product Name")" >
-                    </div>
-                    <div class="col-xl-3 col-lg-3">
-                        <input type="text" name="inventory[]"  id="prdqty" maxlength="255" value="{{old('inventory')}}" class="form-control" placeholder="@lang("Inventory")">
-                    </div>
-                    <div class="col-xl-2 col-lg-2">
-                        <button class="btn btn--danger text-white border--rounded removeExtraVerities"><i class="fa fa-times"></i></button>
-                    </div>
-                </div>`;
-        $('.addVerities').append(html);
-    });
+    // $(document).ready(function() {
+    //     $('.select2').select2({
+    //         tags: true
+    //     });
+    //     var html = `
+    //             <div class="custom-file-wrapper removeVerities">
+    //                 <div class="col-xl-7 col-lg-7">
+    //                     <input type="text" name="product_name[]" id="prdname" maxlength="255" value="" class="form-control" placeholder="@lang("Product Name")" >
+    //                 </div>
+    //                 <div class="col-xl-3 col-lg-3">
+    //                     <input type="text" name="inventory[]"  id="prdqty" maxlength="255" value="" class="form-control" placeholder="@lang("Inventory")">
+    //                 </div>
+    //                 <div class="col-xl-2 col-lg-2">
+    //                     <button class="btn btn--danger text-white border--rounded removeExtraVerities"><i class="fa fa-times"></i></button>
+    //                 </div>
+    //             </div>`;
+    //     $('.addVerities').append(html);
+    // });
 
     $(".remove-image").on('click', function () {
         $(".profilePicPreview").css('background-image', 'none');
@@ -272,10 +290,10 @@
         var html = `
                 <div class="custom-file-wrapper removeVerities">
                     <div class="col-xl-7 col-lg-7">
-                        <input type="text" name="product_name[]" maxlength="255" value="{{old('product_name')}}" class="form-control" placeholder="@lang("Product Name")" required="">
+                        <input type="text" name="product_name[]" maxlength="255" value="" class="form-control" placeholder="@lang("Product Name")" required="">
                     </div>
                     <div class="col-xl-3 col-lg-3">
-                        <input type="text" name="inventory[]" maxlength="255" value="{{old('inventory')}}" class="form-control" placeholder="@lang("Inventory")" required="">
+                        <input type="text" name="inventory[]" maxlength="255" value="" class="form-control" placeholder="@lang("Inventory")" required="">
                     </div>
                     <div class="col-xl-2 col-lg-2">
                         <button class="btn btn--danger text-white border--rounded removeExtraVerities"><i class="fa fa-times"></i></button>
@@ -333,11 +351,24 @@
                 }
         });   
     });
+    $(".conditional-div").css("display", "block");
+    $("#product_code_div").css("display", "block");
+    $("#screenshot_title").text("Pictures and Media");
+    $("#feature_div").css("display", "none");
+    $("#tag_div").css("display", "none");
+    $("#file_div").css("display", "none");
+    $("#demo_div").css("display", "none");
+    $("#document_div").css("display", "none");
+    $("#zip_div").css("display", "none");
+    $("#verities_div").css("display","block");
+    $("#prdname").prop('required',true);
+    $("#prdqty").prop('required',true);
+    $("#coming_soon").css("display", "none");
     $('#product_type').on('change', function(){
         var product_type = $(this).val();
-        console.log(product_type);
         if(product_type==1){
             $(".conditional-div").css("display", "block");
+            $("#product_code_div").css("display", "block");
             $("#screenshot_title").text("Pictures and Media");
             $("#feature_div").css("display", "none");
             $("#tag_div").css("display", "none");
@@ -351,6 +382,7 @@
             $("#coming_soon").css("display", "none");
         }else if(product_type==2){
             $(".conditional-div").css("display", "block");
+            $("#product_code_div").css("display", "none");
             $("#screenshot_title").text("Screenshot");
             $("#feature_div").css("display", "block");
             $("#tag_div").css("display", "block");
@@ -363,14 +395,29 @@
             $("#prdname").prop('required',false);
             $("#prdqty").prop('required',false);
         }else if(product_type==3){
+            $("#product_code_div").css("display", "none");
             $(".conditional-div").css("display", "none");
             $("#coming_soon").css("display", "block");
         }else if(product_type==4){
+            $("#product_code_div").css("display", "none");
             $(".conditional-div").css("display", "none");
             $("#coming_soon").css("display", "block");
         }
             
     });
+    $('.checkProductCode').on('focusout',function(e){
+                var url = '{{ route('user.seller.checkProductCode') }}';
+                var value = $(this).val();
+                var token = '{{ csrf_token() }}';
+                var data = {product_code:value,_token:token};
+                $.post(url,data,function(response) {
+                  if (response['is_exist'] == true) {
+                      $('.product_codeExits').text('Product Code is Already Taken!');
+                  }else{
+                    $('.product_codeExits').text('')
+                  }
+                });
+            });
 
 </script>
 @endpush

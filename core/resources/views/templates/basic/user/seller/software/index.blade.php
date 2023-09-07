@@ -18,6 +18,7 @@
                                         <thead>
                                             <tr>
                                                 <th>@lang('Title')</th>
+                                                <th>@lang('Product Code')</th>
                                                 <th>@lang('Amount')</th>
                                                 <th>@lang('Product Type')</th>
                                                 <!-- <th>@lang('Product File')</th>
@@ -46,6 +47,7 @@
                                                             </div>
                                                         </div>
                                                     </td>
+                                                    <td data-label="@lang('Amount')">{{$software->product_code}}</td>
                                                     <td data-label="@lang('Amount')">{{$general->cur_sym}}{{showAmount($software->amount)}}</td>
                                                     <td data-label="@lang('Product Type')">{{ ($software->product_type !=0 ) ? $software->productType->name :'' }}</td>
                                                     <!-- <td data-label="@lang('Software File')">

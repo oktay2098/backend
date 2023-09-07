@@ -107,7 +107,12 @@
                                                     </div>
                                                 @endforeach
                                         </div>
-
+                                        <div class="col-xl-6 col-lg-6 form-group conditional-div" id="product_code_div">
+                                            <label>@lang('Product Code')*</label>
+                                            <div class="input-group mb-3">
+                                                <input type="text" class="form-control" name="product_code" value="{{$software->product_code}}" placeholder="@lang('Enter Product Code')" required="">
+                                            </div>
+                                        </div>
                                         <div class="col-xl-6 col-lg-6 form-group conditional-div">
                                             <label>@lang('Price')*</label>
                                             <div class="input-group mb-3">
@@ -432,6 +437,7 @@
         console.log(product_type);
         if(product_type==1){
             $(".conditional-div").css("display", "block");
+            $("#product_code_div").css("display", "block");
             $("#screenshot_title").text("Pictures and Media");
             $("#feature_div").css("display", "none");
             $("#tag_div").css("display", "none");
@@ -442,6 +448,7 @@
             $("#verities_div").css("display","block");
             $("#coming_soon").css("display", "none");
         }else if(product_type==2){
+            $("#product_code_div").css("display", "none");
             $(".conditional-div").css("display", "block");
             $("#screenshot_title").text("Pictures and Media");
             $("#feature_div").css("display", "block");
@@ -453,9 +460,11 @@
             $("#verities_div").css("display","none");
             $("#coming_soon").css("display", "none");
         }else if(product_type==3){
+            $("#product_code_div").css("display", "none");
             $(".conditional-div").css("display", "none");
             $("#coming_soon").css("display", "block");
         }else if(product_type==4){
+            $("#product_code_div").css("display", "none");
             $(".conditional-div").css("display", "none");
             $("#coming_soon").css("display", "block");
         }
@@ -465,6 +474,7 @@
         var product_type = $(this).val();
         console.log(product_type);
         if(product_type==1){
+            $("#product_code_div").css("display", "block");
             $(".conditional-div").css("display", "block");
             $("#screenshot_title").text("Pictures and Media");
             $("#feature_div").css("display", "none");
@@ -476,6 +486,7 @@
             $("#verities_div").css("display","block");
             $("#coming_soon").css("display", "none");
         }else if(product_type==2){
+            $("#product_code_div").css("display", "none");
             $(".conditional-div").css("display", "block");
             $("#screenshot_title").text("Screenshot");
             $("#feature_div").css("display", "block");
@@ -487,9 +498,11 @@
             $("#verities_div").css("display","none");
             $("#coming_soon").css("display", "none");
         }else if(product_type==3){
+            $("#product_code_div").css("display", "none");
             $(".conditional-div").css("display", "none");
             $("#coming_soon").css("display", "block");
         }else if(product_type==4){
+            $("#product_code_div").css("display", "none");
             $(".conditional-div").css("display", "none");
             $("#coming_soon").css("display", "block");
         }
