@@ -49,6 +49,7 @@ class SoftwareController extends Controller
                 'category' => 'required|exists:categories,id',
                 'subcategory' => 'nullable|exists:sub_categories,id',
                 'amount' => 'required|numeric|gt:0',
+                'product_code' => 'required|string|max:50|unique:software',
                 'product_name' => 'required|array|min:1|max:15',
                 'inventory' => 'required|array|min:1|max:15',
                 'description' => 'required',
@@ -78,6 +79,7 @@ class SoftwareController extends Controller
         $software->category_id = $request->category;
         $software->sub_category_id = $request->subcategory ? $request->subcategory : null;
         $software->title = $request->title;
+        $software->product_code = $request->product_code;
         $software->amount = $request->amount;
         $software->demo_url = $request->url;
         $software->tag = $request->tag;
@@ -173,7 +175,11 @@ class SoftwareController extends Controller
             'country' => 'required',
             'shipping_charge' => 'required|numeric',
             'delivery_day' => 'required|numeric|gt:0',
+            'recommand_seling_price' => 'required',
         ]);
+        $software->recommand_seling_price = $request->recommand_seling_price;
+        $software->product_code = $request->product_code;
+        $software->demo_url = implode(',',$request->demo_url);
         $software->shipping_type = $request->shipping_type;
         $software->shipping_charge = $request->shipping_charge;
         $software->delivery_day = $request->delivery_day;
@@ -203,6 +209,7 @@ class SoftwareController extends Controller
                 'title' => 'required|string|max:255',
                 'category' => 'required|exists:categories,id',
                 'subcategory' => 'nullable|exists:sub_categories,id',
+                'product_code' => 'required|string|unique:software,product_code,'.$software->id,
                 'amount' => 'required|numeric|gt:0',
                 'description' => 'required',
             ]);
@@ -230,6 +237,7 @@ class SoftwareController extends Controller
         $software->category_id = $request->category;
         $software->sub_category_id = $request->subcategory ? $request->subcategory : null;
         $software->title = $request->title;
+        $software->product_code = $request->product_code;
         $software->amount = $request->amount;
         $software->demo_url = $request->url;
         $software->description = $request->description;
@@ -335,6 +343,15 @@ class SoftwareController extends Controller
         }
 	}
 
+    public function checkProductCode(Request $request){
+        $ifExist = Software::where('product_code',$request->product_code)->first();
+        if($ifExist != ''){
+            return response()->json(['is_exist' => true], 200);
+        }else{
+            return response()->json(['is_exist' => false], 200);
+        }
+    }
+    
 
 	private function screenshotImageStore($request, $screenshot, $softwareId)
     {

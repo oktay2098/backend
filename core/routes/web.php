@@ -607,6 +607,7 @@ Route::name('user.')->group(function () {
                 Route::post('/product/updatemanage/{id}', 'SoftwareController@updateManage')->name('software.updateManage');
                 Route::get('product/booking/details/{id}', 'HomeController@productBookingDetails')->name('booking.product.details');
                 Route::post('product-booking/confirm', 'HomeController@productBookingConfirm')->name('product_booking.confirm');
+                Route::post('/check_product_code', 'SoftwareController@checkProductCode')->name('seller.checkProductCode');
 
             });
 
