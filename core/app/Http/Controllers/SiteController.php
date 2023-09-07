@@ -163,11 +163,12 @@ class SiteController extends Controller
 
     public function softwareDetails($slug, $id)
     {
-
+        // dd('ok');
         $software = Software::where('status', 1)->with('verities')->whereHas('category', function ($q) {
             $q->where('status', 1);
         })->where('id', decrypt($id))->firstOrFail();
         $pageTitle = $software->title;
+        // dd($software->optionalImage);
 
         $otherServices = Service::where('status', 1)->whereHas('category', function ($q) {
             $q->where('status', 1);
@@ -178,6 +179,7 @@ class SiteController extends Controller
         })->where('user_id', $software->user_id)->count();
 
         $activeUser = Auth::user();
+        // dd($activeUser);
         $softwareGetRating = null;
         $softwareUser = User::where('id', $software->user_id)->firstOrFail();
         if ($activeUser) {
@@ -197,7 +199,7 @@ class SiteController extends Controller
 
         $comments = Comment::where('software_id', $software->id)->with('user', 'commentReply')->paginate(7);
         $reviews = ReviewRating::where('software_id', $software->id)->with('user')->paginate(7);
-        return view($this->activeTemplate . 'software_details', compact('pageTitle', 'software', 'otherServices', 'totalService', 'comments', 'reviews', 'softwareGetRating', 'softwareSales', 'reviewRataingAvg', 'workInprogress'));
+        return view($this->activeTemplate . 'software_details', compact('pageTitle' ,'software', 'otherServices', 'totalService', 'comments', 'reviews', 'softwareGetRating', 'softwareSales', 'reviewRataingAvg', 'workInprogress'));
     }
 
     public function job()
