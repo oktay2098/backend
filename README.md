@@ -4,7 +4,7 @@ mabdo93cana7r
 01061869135aae63aw9
 
 sql :
-https://bit.ly/3R7wKsn
+https://bit.ly/3qUif0w
 
 vendor Folder :
 https://bit.ly/44FABjE
