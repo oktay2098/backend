@@ -79,7 +79,15 @@
                                                         </div>
                                                         @if($software->product_type == 2)
                                                         <div class="right mb-20">
-                                                            <a href="{{$software->demo_url}}" target="__blank" class="btn--base text-white"><i class="las la-shopping-cart"></i> @lang('Preview')</a>
+                                                            <a href="{{$software->demo_url}}" target="__blank" class="btn--base text-white "><i class="las la-shopping-cart"></i> @lang('Preview')</a>
+                                                        </div>
+                                                        @endif
+                                                        @if($software->product_type == 1)
+                                                        <div class="right mb-20">
+                                                            <a href="{{$software->demo_url}}" target="__blank" class="btn--base text-white download_file"><i class="las la-shopping-cart"></i>Download All Product Video</a>
+                                                        </div>
+                                                        <div class="right mb-20">
+                                                            <button class="btn--base text-white" onclick="downloadImages()">Download All Images</button>
                                                         </div>
                                                         @endif
                                                     </div>
@@ -355,7 +363,7 @@
                                         </div>
                                        
 
-                                        <div class="widget custom-widget mb-30">
+                                        {{-- <div class="widget custom-widget mb-30">
                                             <h3 class="widget-title">@lang('PRODUCT DETAILS')</h3>
                                             <ul class="details-list">
                                                 @if($software->product_type==2)
@@ -393,7 +401,7 @@
                                               
                                             </ul>
                                             
-                                        </div>
+                                        </div> --}}
 
                              
                                         <div class="widget">
@@ -569,5 +577,52 @@
         });
         $(this).data('page', (parseInt(page) +1));
     });
+
+    $('.download_file').on('click', function(){
+        var file = this.href;
+        downloadAllFiles(file);
+    });
+
+    function downloadAllFiles (urls) {
+        var imageUrls = urls.split(',');
+        imageUrls.forEach((url, index) => {
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = `file${index + 1}`;
+                link.style.disply = 'none';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            });
+    }
+
+   
+
+    function downloadImages() {
+        var mainImagePath = '{{ getImage("assets/images/software/" . $software->image, imagePath()["software"]["size"]) }}';
+        var optionalImagePaths = [
+            @foreach($software->optionalImage as $value)
+            '{{ getImage("assets/images/screenshot/" . $value->image, imagePath()["screenshot"]["size"]) }}' ,
+            @endforeach
+        ];
+
+        function downloadImage(imagePath) {
+                var anchor = document.createElement('a');
+                anchor.href = imagePath;
+                anchor.download = imagePath.split('/').pop();
+                document.body.appendChild(anchor);
+                anchor.click();
+                document.body.removeChild(anchor);
+        }
+
+
+        downloadImage(mainImagePath);
+
+        optionalImagePaths.forEach(function(imagePath) {
+            downloadImage(imagePath);
+        });
+    }
+
+ 
 </script>
 @endpush
