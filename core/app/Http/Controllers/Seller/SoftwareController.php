@@ -88,16 +88,22 @@ class SoftwareController extends Controller
         $software->product_type = $request->product_type;
 
         $path = imagePath()['product']['path'];
-        $size = imagePath()['product']['size'];
+        // $size = imagePath()['product']['size'];
+        $max_size = imagePath()['product']['max_size'];
+
         if ($request->hasFile('image')) {
             $file = $request->image;
+            $dimensions = getimagesize($file);
+            $size = decide_resize($dimensions, $max_size);
             try {
                 $filename = uploadImage($file, $path, $size);
+                $original_image = uploadImage($file, $path);
             } catch (\Exception $exp) {
                 $notify[] = ['error', 'Image could not be uploaded.'];
                 return back()->withNotify($notify);
             }
             $software->image = $filename;
+            $software->original_image = $original_image;
         }
 
         $documentPath = imagePath()['document']['path'];
@@ -244,16 +250,23 @@ class SoftwareController extends Controller
         $software->tag = $request->tag;
         $software->file_include = $request->file_include;
         $path = imagePath()['software']['path'];
-        $size = imagePath()['software']['size']; 
+        // $size = imagePath()['software']['size']; 
+        $max_size = imagePath()['product']['max_size'];
         if ($request->hasFile('image')) {
             $file = $request->image;
+            $dimensions = getimagesize($file);
+            $size = decide_resize($dimensions, $max_size);
             try {
                 $filename = uploadImage($file, $path, $size, $software->image);
+                $original_image = uploadImage($file, $path);
+
             } catch (\Exception $exp) {
                 $notify[] = ['error', 'Image could not be uploaded.'];
                 return back()->withNotify($notify);
             }
             $software->image = $filename;
+            $software->original_image = $original_image;
+
         }
         $documentPath = imagePath()['document']['path'];
         if($request->hasFile('document')) {
@@ -355,21 +368,27 @@ class SoftwareController extends Controller
 
 	private function screenshotImageStore($request, $screenshot, $softwareId)
     {
+        $max_size = imagePath()['product']['max_size'];
+        
     	foreach($screenshot as $optional)
     	{
     		$optionals = new OptionalImage();
     		$optionals->software_id = $softwareId;
     		$path = imagePath()['screenshot']['path'];
-	        $size = imagePath()['screenshot']['size'];
 	        if ($request->hasFile('screenshot')) {
 	            $file = $optional;
+                $dimensions = getimagesize($file);
+                $size = decide_resize($dimensions, $max_size);
 	            try {
 	                $filename = uploadImage($file, $path, $size);
+                    $original_image = uploadImage($file, $path);
+
 	            } catch (\Exception $exp) {
 	                $notify[] = ['error', 'Image could not be uploaded.'];
 	                return back()->withNotify($notify);
 	            }
 	            $optionals->image = $filename;
+	            $optionals->original_image = $original_image;
 	        }
 	        $optionals->save();
     	}

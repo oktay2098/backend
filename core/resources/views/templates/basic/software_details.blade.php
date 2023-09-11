@@ -1,5 +1,14 @@
 @extends($activeTemplate.'layouts.frontend')
 @section('content')
+
+
+  {{--  @php 
+$size = [1000 , 2000];
+$max = ['921','468'] ;
+dd(decide_resize($size,$max))
+
+@endphp --}}
+
 <section class="all-sections pt-60">
     <div class="container-fluid p-max-sm-0">
         <div class="sections-wrapper d-flex flex-wrap justify-content-center">
@@ -11,19 +20,22 @@
                                 <div class="col-xl-9 col-lg-9 mb-30">
                                     <div class="item-details-area">
                                         <div class="item-details-box">
-                                            <div class="item-details-thumb-area">
+                                            <div class="item-details-thumb-area h-50" >
                                                 <div class="item-details-slider-area">
                                                     <div class="item-details-slider">
-                                                        <div class="swiper-wrapper">
+                                                        <div class="swiper-wrapper align-items-center">
                                                             <div class="swiper-slide">
-                                                                <div class="item-details-thumb">
-                                                                    <img src="{{getImage('assets/images/software/'.$software->image, imagePath()['software']['size']) }}" alt="@lang('item-banner')">
+                                                                <div class="d-flex justify-content-center">
+                                                                    <img src="{{getImage('assets/images/software/'.$software->image
+                                                                    ) }}" alt="@lang('item-banner')">
                                                                 </div>
-                                                            </div>
+                                                            </div> 
                                                             @foreach($software->optionalImage as $value)
                                                                 <div class="swiper-slide">
-                                                                    <div class="item-details-thumb">
-                                                                        <img src="{{getImage('assets/images/screenshot/'.$value->image, imagePath()['screenshot']['size']) }}" alt="@lang('item-banner')">
+                                                                    <div class="d-flex justify-content-center">
+                                                                        <img src="{{getImage('assets/images/screenshot/'.$value->image
+                                                                        {{--, imagePath()['screenshot']['size']--}}
+                                                                        ) }}" alt="@lang('item-banner')">
                                                                     </div>
                                                                 </div>
                                                             @endforeach
@@ -36,6 +48,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                
                                                 <div thumbsSlider="" class="item-small-slider mt-20">
                                                     <div class="swiper-wrapper">
                                                         @foreach($software->optionalImage as $value)
@@ -599,10 +612,10 @@
    
 
     function downloadImages() {
-        var mainImagePath = '{{ getImage("assets/images/software/" . $software->image, imagePath()["software"]["size"]) }}';
+        var mainImagePath = '{{ getImage("assets/images/software/" . $software->original_image, imagePath()["software"]["size"]) }}';
         var optionalImagePaths = [
             @foreach($software->optionalImage as $value)
-            '{{ getImage("assets/images/screenshot/" . $value->image, imagePath()["screenshot"]["size"]) }}' ,
+            '{{ getImage("assets/images/screenshot/" . $value->original_image, imagePath()["screenshot"]["size"]) }}' ,
             @endforeach
         ];
 
