@@ -703,6 +703,7 @@ function imagePath()
     $data['product'] = [
         'path' => 'assets/images/software',
         'size' => '590x300',
+        'max_size' => '921x468',
     ];
     $data['service'] = [
         'path' => 'assets/images/service',
@@ -1097,4 +1098,45 @@ function authorizeAdmin($user)
 }
 
 
+function decide_size(array $size, string $max_size) : null|string
+{
+    $max_size = explode('x', strtolower($max_size));
+    $max_width = $max_size[0];
+    $max_height = $max_size[1];
+    $original_width = $size[0];
+    $original_height = $size[1];
 
+    $new_height = $original_height;
+    $new_width =  $original_width ;
+
+    if ($original_height > $max_height ){
+        $new_height = ($max_width * $original_height) / $original_width;
+        $original_height = $new_height;
+    }
+    if($original_width > $max_width )
+    {
+        $new_width = ($max_height * $original_width) / $original_height;
+    }
+
+
+    if ($new_height > $max_height || $new_width > $max_width)
+    {
+        return  $new_width."x".$new_height;
+    }
+    return null;
+}
+
+
+function decide_resize(array $size, string $max_size): null|string
+{
+    $max_size = explode('x', strtolower($max_size));
+    
+    if ($size[0] <= $max_size[0] && $size[1] <= $max_size[1]) {
+        return null;
+    }
+
+    $ratio = min($max_size[0] / $size[0], $max_size[1] / $size[1]);
+
+    return (int) round($size[0] * $ratio) . 'x' . (int) round($size[1] * $ratio);
+    
+}
