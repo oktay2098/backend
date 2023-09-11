@@ -14,6 +14,7 @@
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
+        "infureal/artisan-gui": "^2.0@beta",
         "intervention/image": "^2.5",
         "laravel/framework": "^9.0",
         "laravel/sanctum": "^2.11",
