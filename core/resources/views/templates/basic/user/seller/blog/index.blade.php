@@ -133,18 +133,21 @@
         @if($section->element->modal)
         <a href="javascript:void(0)" class="btn btn-sm btn--primary box--shadow1 text--small addBtn"><i class="fa fa-fw fa-plus"></i>@lang('Add New')</a>
     @else
-    <div class="row">
-        <div class="col-md-10">
-        </div>
-        <div class="col-md-2">
-            <a href="{{route('user.blog-create')}}" class="btn btn-sm btn--success box--shadow1 text--small"><i class="fa fa-fw fa-plus"></i>@lang('Add New')</a>
-        </div>
-        </div>
+   
         @endif
         <div class="card">
             
             <div class="card-body">
                 <div class="table-responsive--sm table-responsive">
+                    <div class="row">
+                        <div class="col-md-10">
+                            @include($activeTemplate . 'partials.manage_services_tab')
+                        </div>
+                        <div class="col-md-2">
+                            <a href="{{route('user.blog-create')}}" class="btn btn-sm btn--success box--shadow1 text--small"><i class="fa fa-fw fa-plus"></i>@lang('Add New')</a>
+                        </div>
+                        </div>
+                        
                     <table class="custom-table">
                         <thead>
                         <tr>

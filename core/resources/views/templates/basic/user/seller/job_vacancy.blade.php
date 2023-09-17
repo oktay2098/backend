@@ -8,6 +8,7 @@
                 <div class="col-xl-9 col-lg-12 mb-30">
                     <div class="dashboard-sidebar-open"><i class="las la-bars"></i> @lang('Menu')</div>
                     <div class="table-section">
+                        
                         <div class="row justify-content-center">
                             <div class="col-xl-12">
                                 <div class="table-area">

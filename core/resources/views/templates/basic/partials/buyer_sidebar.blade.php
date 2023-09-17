@@ -19,7 +19,21 @@
                     </div>
                 </div>
                 <ul id="sidebar-main-menu" class="sidebar-main-menu">
-                    <li class="sidebar-single-menu nav-item {{ request()->routeIs('user.home') ? 'open' : '' }} ">
+                    <li
+                    class="sidebar-single-menu nav-item {{ 
+                        request()->routeIs('user.service.index') || request()->routeIs('user.service.edit') ||
+                        request()->routeIs('user.software.index') || request()->routeIs('user.software.edit') ||
+                        request()->routeIs('user.blog') ||
+                        request()->routeIs('user.job.index') || request()->routeIs('user.job.edit')
+
+
+                        ? 'open' : '' }}">
+                    <a href="{{ route('user.service.index') }}">
+                        <i class="las la-list"></i> <span class="title">@lang('Manage Postes')</span>
+                    </a>
+                </li>
+
+                {{-- <li class="sidebar-single-menu nav-item {{ request()->routeIs('user.home') ? 'open' : '' }} ">
                         <a href="{{ route('user.home') }}">
                             <i class="lab la-buffer"></i> <span class="title">@lang('Dashboard')</span>
                         </a>
@@ -46,7 +60,7 @@
                         <a href="{{ route('user.job.index') }}">
                             <i class="las la-list"></i> <span class="title">@lang('Manage Job')</span>
                         </a>
-                    </li>
+                    </li> --}}
                 </ul>
 
                 <h5 class="menu-header-title">@lang('Tools')</h5>
