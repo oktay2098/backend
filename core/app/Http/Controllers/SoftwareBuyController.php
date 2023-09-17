@@ -38,30 +38,40 @@ class SoftwareBuyController extends Controller
         ));
 
         $response = curl_exec($curl);
+        if(curl_exec($curl) === false){
+            // echo 'Curl error: ' . curl_error($ch);
+            \Log::debug($ch);
+        }
 
         curl_close($curl);
         return json_decode($response);
     }
 
     public function convertCurrency($amount = null){
-        $listCountry = [
-            'PH' => 'PHP',
-            'AE' => 'AED',
-            'SA' => 'SAR',
-            'EG' => 'EGP',
-        ];
+        try {
+            
+            $listCountry = [
+                'PH' => 'PHP',
+                'AE' => 'AED',
+                'SA' => 'SAR',
+                'EG' => 'EGP',
+            ];
 
-        $userCurrLoc = $this->CURLRequest('https://ipinfo.io/json?token=025d7ae9f61eb4');
-        $currencies = $this->CURLRequest('https://api.exchangerate-api.com/v4/latest/USD');
-        $currencyRates = (array) $currencies->rates;
-        $userCurrency = $listCountry[$userCurrLoc->country] ?? null;
+            $userCurrLoc = $this->CURLRequest('https://ipinfo.io/json?token=025d7ae9f61eb4');
+            $currencies = $this->CURLRequest('https://api.exchangerate-api.com/v4/latest/USD');
+            $currencyRates = (array) $currencies->rates;
+            $userCurrency = $listCountry[$userCurrLoc->country] ?? null;
 
-        if(!$userCurrency)return null;
-        
-        $fromRate = $currencyRates['USD'];
-        $toRate = $currencyRates[$userCurrency];
-        $conversionValue = (($toRate / $fromRate) * $amount);
-        return $conversionValue;
+            if(!$userCurrency)return null;
+            
+            $fromRate = $currencyRates['USD'];
+            $toRate = $currencyRates[$userCurrency];
+            $conversionValue = (($toRate / $fromRate) * $amount);
+            return $conversionValue;
+        } catch (\Throwable $th) {
+            \Log::debug($th);
+            //throw $th;
+        }
     }
 
     public function softwareBuy($slug, $id)
