@@ -92,15 +92,15 @@ dd(decide_resize($size,$max))
                                                         </div>
                                                         @if($software->product_type == 2)
                                                         <div class="right mb-20">
-                                                            <a href="{{$software->demo_url}}" target="__blank" class="btn--base text-white "><i class="las la-shopping-cart"></i> @lang('Preview')</a>
+                                                            <a href="{{$software->demo_url}}" target="__blank" class="btn--base text-white "><i class="las la-shopping-cart"></i>@lang('Preview')</a>
                                                         </div>
                                                         @endif
                                                         @if($software->product_type == 1)
                                                         <div class="right mb-20">
-                                                            <a href="{{$software->demo_url}}" target="__blank" class="btn--base text-white download_file"><i class="las la-shopping-cart"></i>Download All Product Video</a>
+                                                            <a href="{{$software->demo_url}}" target="__blank" class="btn--base text-white download_file"><i class="las la-shopping-cart"></i>@lang('Preview')</a>
                                                         </div>
                                                         <div class="right mb-20">
-                                                            <button class="btn--base text-white" onclick="downloadImages()">Download All Images</button>
+                                                            <button class="btn--base text-white" onclick="downloadImages()">@lang('Download All Images')</button>
                                                         </div>
                                                         @endif
                                                     </div>

@@ -8,12 +8,17 @@
                 <div class="col-xl-9 col-lg-12 mb-30">
                     <div class="dashboard-sidebar-open"><i class="las la-bars"></i> @lang('Menu')</div>
                     <div class="table-section">
+                        <div class="row mb-30">
+                            <div class="col-md-10">
+                                @include($activeTemplate . 'partials.manage_services_tab')
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <a href="{{route('user.software.create')}}" class="btn btn-sm btn--success box--shadow1 text--small"style="background-color: #198754; color: #ffffff; border-radius: 5px; ><i class="fa fa-fw fa-plus"></i>@lang('Add New')</a>
+                                                    </div>
+                                                </div>
                         <div class="row justify-content-center">
                             <div class="col-xl-12">
                                 <div class="table-area">
-                                    <div class="col-md-2">
-                                        <a href="{{route('user.software.create')}}" class="btn btn-sm btn--success box--shadow1 text--small"style="background-color: #198754; color: #ffffff; border-radius: 5px; ><i class="fa fa-fw fa-plus"></i>@lang('Add New')</a>
-                                    </div>
                                     <table class="custom-table">
                                         <thead>
                                             <tr>
@@ -85,7 +90,7 @@
                                                     <td data-label="Action">
                                                         <a href="{{route('user.software.edit', [slug($software->title), $software->id])}}" class="btn btn--primary text-white"><i class="fa fa-pencil-alt"></i></a>
                                                         @if(($software->status == 1) && ($software->product_type==1))
-                                                        <a href="{{route('user.software.manage', [slug($software->title), $software->id])}}" class="btn btn--primary text-white">Manage Prdouct</a>
+                                                        <a href="{{route('user.software.manage', [slug($software->title), $software->id])}}" class="btn btn--primary text-white">@lang('Manage Product')</a>
                                                         @endif
                                                     </td>
                                                 </tr>

@@ -42,9 +42,9 @@
                                             <div class="item-tags order-3" style="margin-top:0px;">
                                                     <!-- <a href="javascript:void(0)">Return</a> -->
                                                     @if($software->shipping_charge==0)
-                                                    <a href="javascript:void(0)">Free Delivery</a>
+                                                    <a href="javascript:void(0)">@lang('Free Delivery')</a>
                                                     @endif
-                                                   <a href="javascript:void(0)">Supplier Delivery</a>
+                                                   <a href="javascript:void(0)">@lang('Supplier Delivery')</a>
                                             </div>
                                             
                                             <div class="form order-4 mt-5">
@@ -52,15 +52,15 @@
                                                 @csrf                               
                                                     <div class="row justify-content-center mb-10-none">
                                                         <div class="col-lg-12 col-md-12 form-group">
-                                                            <label for="fullname">Full Name</label>
-                                                            <input type="text" name="fullname" id="fullname" class="form-control" placeholder="Enter name" required="">
+                                                            <label for="fullname">@lang('Full Name')</label>
+                                                            <input type="text" name="fullname" id="fullname" class="form-control" placeholder="@lang('Enter name')" required="">
                                                         </div>
                                                         <div class="col-lg-6 col-md-6 form-group">
-                                                            <label for="fullname">Brand</label>
-                                                            <input type="text" name="brand" id="brand" class="form-control" placeholder="Enter brand" required="required">
+                                                            <label for="fullname">@lang('Brand')</label>
+                                                            <input type="text" name="brand" id="brand" class="form-control" placeholder="@lang('Enter brand')" required="required">
                                                         </div>
                                                         <div class="col-lg-6 col-md-6 form-group">
-                                                            <label for="fullname">Mobile</label>
+                                                            <label for="fullname">@lang('Mobile')</label>
                                                             <div class="input-group country-code">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text mobile-code">
@@ -73,7 +73,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-6 col-md-6 form-group">
-                                                            <label for="fullname">Shipping Type</label>
+                                                            <label for="fullname">@lang('Shipping Type')</label>
                                                             <select name="shipping_type" id="shipping_type" class="form-control" required="required">
                                                             @foreach($shippingTypes as $type)
                                                                 <option value="{{ $type }}" {{($type!='Self Shipping') ? 'disabled' : '' }} {{ ($type==$software->shipping_type) ? 'selected' : '' }}>{{ $type}}</option>
@@ -81,7 +81,7 @@
                                                             </select>
                                                         </div>
                                                         <div class="col-lg-6 col-md-6 form-group" >
-                                                            <label for="fullname">Country</label>
+                                                            <label for="fullname">@lang('Country')</label>
                                                             <select name="country" id="country" class="form-control" required="required">
                                                             @foreach($countries as $key => $country)
                                                                 @if(in_array($country->country,explode(',',$software->available_in_country)))
@@ -91,15 +91,15 @@
                                                             </select>
                                                         </div>
                                                         <div class="col-lg-6 col-md-6 form-group">
-                                                            <label for="fullname">City</label>
-                                                            <input type="text" name="city" id="city" class="form-control" placeholder="Enter City Name" required="required">
+                                                            <label for="fullname">@lang('City')</label>
+                                                            <input type="text" name="city" id="city" class="form-control" placeholder="@lang('Enter City Name')" required="required">
                                                         </div>
                                                         <div class="col-lg-6 col-md-6 form-group">
-                                                            <label for="fullname">Address(Stree - Building - Appartment)</label>
-                                                            <input type="text" name="address"  id="address" class="form-control" placeholder="Enter address" required="required">
+                                                            <label for="fullname">@lang('Address(Stree - Building - Appartment)')</label>
+                                                            <input type="text" name="address"  id="address" class="form-control" placeholder="@lang('Enter address')" required="required">
                                                         </div>
                                                         <div class="col-lg-12 form-group">
-                                                            <label for="fullname">Notes to the Delivery Person</label>
+                                                            <label for="fullname">@lang('Notes to the Delivery Person')</label>
                                                             <textarea name="notes" id="notes" ></textarea>
                                                         </div>
                                                         
