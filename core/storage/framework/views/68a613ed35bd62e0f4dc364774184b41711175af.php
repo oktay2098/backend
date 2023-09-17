@@ -225,7 +225,7 @@
                         </div>
                     </div>
                     <?php endif; ?>
-                    <div class="table-section pt-60">
+                    <div class="table-section pt-60 d-none">
                         <div class="row justify-content-center">
                             <div class="col-xl-12">
                                 <div class="table-area">
