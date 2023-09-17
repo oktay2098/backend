@@ -108,29 +108,6 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-xl-12 col-lg-12 form-group conditional-div" id="verities_div" style="display:none;">
-                                            <div class="card custom--card p-0 mb-3">
-                                                <div class="card-header d-flex flex-wrap align-items-center justify-content-between">
-                                                    <h4 class="card-title mb-0">
-                                                        @lang('Additional Services (Coming Soon)')
-                                                    </h4>
-                                                </div>
-                                                <div class="card-body addVerities">
-                                                    <div class="custom-file-wrapper removeVerities">
-                                                        <div class="col-xl-12 col-lg-12">
-                                                            <p>Add offer(Coupon)*</p>
-                                                            <p> Return the Product*</p>
-                                                            <p>Extract All order data*</p>
-                                                        </div>
-                                                        
-                                                        
-                                                    </div>
-                                                    
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-
                                        
 
                                         <div class="col-xl-12 form-group conditional-div">
