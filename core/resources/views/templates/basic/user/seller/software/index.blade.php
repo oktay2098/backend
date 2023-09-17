@@ -85,7 +85,7 @@
                                                     <td data-label="Action">
                                                         <a href="{{route('user.software.edit', [slug($software->title), $software->id])}}" class="btn btn--primary text-white"><i class="fa fa-pencil-alt"></i></a>
                                                         @if(($software->status == 1) && ($software->product_type==1))
-                                                        <a href="{{route('user.software.manage', [slug($software->title), $software->id])}}" class="btn btn--primary text-white">Manage Prdouct</a>
+                                                        <a href="{{route('user.software.manage', [slug($software->title), $software->id])}}" class="btn btn--primary text-white">@lang('Manage Product')</a>
                                                         @endif
                                                     </td>
                                                 </tr>
