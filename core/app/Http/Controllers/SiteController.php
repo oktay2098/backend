@@ -157,6 +157,14 @@ class SiteController extends Controller
         $softwares = Software::where('status', 1)->whereHas('category', function ($q) {
             $q->where('status', 1);
         })->with('user', 'user.rank')->latest()->paginate(getPaginate());
+
+        foreach ($softwares as $key => $value) {
+            // OVERWRITE CURRENCY VALUE BASE ON USER CURRENT LOCATION
+            if($value->amount){
+                $softwareAmount = app()->call('App\Http\Controllers\SoftwareBuyController@convertCurrency',  [ "amount" => $value->amount ]);
+                $value['amount'] = $softwareAmount ?? $value->amount;
+            }
+        }
         return view($this->activeTemplate . 'software', compact('pageTitle', 'softwares', 'emptyMessage','categorys'));
     }
 
@@ -168,6 +176,11 @@ class SiteController extends Controller
             $q->where('status', 1);
         })->where('id', decrypt($id))->firstOrFail();
         $pageTitle = $software->title;
+
+        // OVERWRITE CURRENCY VALUE BASE ON USER CURRENT LOCATION
+        $softwareAmount = app()->call('App\Http\Controllers\SoftwareBuyController@convertCurrency',  [ "amount" => $software->amount ]);
+        $software['amount'] = $softwareAmount ?? $software->amount;
+
         // dd($software->optionalImage);
 
         $otherServices = Service::where('status', 1)->whereHas('category', function ($q) {
