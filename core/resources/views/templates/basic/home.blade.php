@@ -11,7 +11,7 @@
                                 <div style="display: none !important" class="item-wrapper d-flex flex-wrap justify-content-between align-items-center">
                                     <div class="item-wrapper-left d-flex flex-wrap align-items-center">
                                         <div class="item-sorting">
-                                            <form action="{{route('service.filter')}}" method="GET">
+                                            <form action="{ {route('service.filter')}}" method="GET">
                                                 <div class="input-group item-widget-select mb-0">
                                                     <select class="chosen-select" name="default" id="defaultSearch">
                                                         @if(@$filterSearch == "default")

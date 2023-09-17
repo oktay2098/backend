@@ -11,7 +11,7 @@ Route::namespace('Api')->name('api.')->group(function(){
 	Route::get('language-data/{code}','BasicController@languageData');
 
 	Route::namespace('Auth')->group(function(){
-		Route::post('login', 'LoginController@login');
+            Route::post('login', 'LoginController@login');
 		Route::post('register', 'RegisterController@register');
 		
 	    Route::post('password/email', 'ForgotPasswordController@sendResetCodeEmail');
