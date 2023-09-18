@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="{{asset($activeTemplateTrue.'frontend/css/animate.css')}}">
     <link rel="stylesheet" href="{{asset($activeTemplateTrue.'frontend/css/style.css')}}">
     <link rel="stylesheet" href="{{asset($activeTemplateTrue.'frontend/css/bootstrap-fileinput.css')}}">
-    <link rel="stylesheet" href="{{asset($activeTemplateTrue.'frontend/css/custom.css')}}">
+    <link rel="stylesheet" href="{{asset($activeTemplateTrue.'frontend/css/custom.css')}}?v=2">
     @stack('style-lib')
     @stack('style')
     <link href="{{ asset($activeTemplateTrue . 'frontend/css/color.php') }}?color={{$general->base_color}}&secondColor={{$general->secondary_color}}" rel="stylesheet"/>
