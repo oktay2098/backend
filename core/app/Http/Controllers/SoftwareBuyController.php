@@ -15,6 +15,7 @@ use App\Models\Deposit;
 use App\Models\ProductInventory;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 
 class SoftwareBuyController extends Controller
@@ -44,6 +45,7 @@ class SoftwareBuyController extends Controller
         }
 
         curl_close($curl);
+        Storage::disk('public')->put("exchangerate_" . now()->format('Y-m-d') . ".json", $response);
         return json_decode($response);
     }
 
@@ -57,10 +59,16 @@ class SoftwareBuyController extends Controller
                 'EG' => 'EGP',
             ];
 
-            $userCurrLoc = $this->CURLRequest('https://ipinfo.io/json?token=025d7ae9f61eb4');
-            $currencies = $this->CURLRequest('https://api.exchangerate-api.com/v4/latest/USD');
-            $currencyRates = (array) $currencies->rates;
-            $userCurrency = $listCountry[$userCurrLoc->country] ?? null;
+            // $userCurrLoc = $this->CURLRequest('https://ipinfo.io/json?token=025d7ae9f61eb4');
+            $path = '../storage/app/public/' . "exchangerate_" . now()->format('Y-m-d') . ".json";
+            if (@file_get_contents(resource_path($path)) === false){
+                $this->CURLRequest('https://api.exchangerate-api.com/v4/latest/USD');
+            }
+            $countryData = (array)json_decode(file_get_contents(resource_path('../storage/app/public/' . "exchangerate_" . now()->format('Y-m-d') . ".json")));
+
+            $userCurrLoc = "PH";
+            $currencyRates = (array) $countryData['rates'];
+            $userCurrency = $listCountry[$userCurrLoc] ?? null;
 
             if(!$userCurrency)return null;
             
