@@ -348,6 +348,7 @@ class UserController extends Controller
 	}
 
     public function withdrawLog(){
+        dd('test');
         $withdrawals = Withdrawal::where('user_id', auth()->user()->id)->where('status', '!=', 0)->with('method')->orderBy('id','desc')->paginate(getPaginate());
             return response()->json([
             'code'=>200,
@@ -361,12 +362,16 @@ class UserController extends Controller
 
     public function depositHistory(){
         $deposits = Deposit::where('user_id', auth()->user()->id)->where('status', '!=', 0)->with('gateway')->orderBy('id','desc')->paginate(getPaginate());
+        $withdrawals = Withdrawal::where('user_id', auth()->user()->id)->where('status', '!=', 0)->with('method')->orderBy('id','desc')->paginate(getPaginate());
+
         return response()->json([
             'code'=>200,
             'status'=>'ok',
             'data'=>[
                 'deposit'=>$deposits,
                 'verification_file_path'=>imagePath()['verify']['deposit']['path'],
+                'withdrawals'=>$withdrawals,
+                'verification_file_path_withdrawals'=>imagePath()['verify']['withdraw']['path'],
             ]
         ]);
     }

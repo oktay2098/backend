@@ -6,6 +6,7 @@
             <div class="dashboard-sidebar-wrapper-inner">
                 <div>
                     <div class="d-flex justify-content-center">
+                        
                         <a href="{{ route('profile', auth()->user()->username) }}">
                             <img class="sidebar-profile"
                                 src="{{ getImage('assets/images/user/profile/' . auth()->user()->image, '400x400') }}"

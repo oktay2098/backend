@@ -570,6 +570,9 @@ Route::name('user.')->group(function () {
                 Route::post('/withdraw/preview', 'UserController@withdrawSubmit')->name('withdraw.submit');
                 Route::get('/withdraw/history', 'UserController@withdrawLog')->name('withdraw.history');
 
+                // History
+            Route::get('/payment/history', 'UserController@history')->name('payment.history');;
+
                 //Home Controller
                 Route::get('service/booking/', 'HomeController@serviceBookeds')->name('booking.service');
                 Route::get('service/booking/details/{id}', 'HomeController@serviceBookingDetails')->name('booking.service.details');
