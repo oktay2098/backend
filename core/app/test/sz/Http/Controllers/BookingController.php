@@ -68,7 +68,7 @@ class BookingController extends Controller
         $request->validate([
             'serviceId' => 'required|exists:services,id',
             'qty' => 'required|min:1|max:30',
-            'payment' => 'required|in:wallet,checkout'
+            'payment' => 'required|in:wallet,checkout,payment-when-delivery'
         ]);
         $user = Auth::user();
         $service = Service::where('status', 1)->where('id', $request->serviceId)->firstOrFail();
@@ -83,6 +83,9 @@ class BookingController extends Controller
         elseif($request->payment == "checkout"){
             $this->orderWithCheckout($service->id, $request->qty, $request->extraservice);
             return redirect()->route('user.payment.method');
+        }
+        elseif($request->payment == "payment-when-delivery"){
+            dd("hi");
         }
         else{
             $notify[] = ["error","Something is wrong"];

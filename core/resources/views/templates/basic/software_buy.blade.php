@@ -223,6 +223,8 @@
                                 <select class="form-control" name="payment">
                                     <option value="wallet">{{__($general->sitename)}} @lang('wallet')</option>
                                     <option value="checkout">@lang('Checkout')</option>
+                                  <option value="payment-when-delivery">@lang('payment when delivery')</option>
+
                                 </select>
                             </div>
                             <div class="form-group">
@@ -280,6 +282,8 @@
                                 <select class="form-control" name="payment">
                                     <option value="wallet">{{__($general->sitename)}} @lang('wallet')</option>
                                     <option value="checkout">@lang('Checkout')</option>
+                                   <option value="payment-when-delivery">@lang('payment when delivery')</option>
+
                                 </select>
                             </div>
                             <div class="form-group">

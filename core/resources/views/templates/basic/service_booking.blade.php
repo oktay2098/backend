@@ -169,6 +169,7 @@
                         <select class="form-control" name="payment">
                             <option value="wallet">{{__($general->sitename)}} @lang('wallet')</option>
                             <option value="checkout">@lang('Checkout')</option>
+
                         </select>
                     </div>
                 </div>

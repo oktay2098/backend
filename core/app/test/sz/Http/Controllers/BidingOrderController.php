@@ -45,7 +45,7 @@ class BidingOrderController extends Controller
     {
     	$request->validate([
     		'job_biding_id' => 'required|exists:job_bidings,id',
-            'payment' => 'required|in:wallet,checkout'
+            'payment' => 'required|in:wallet,checkout,payment-when-delivery'
         ]);
         $user = Auth::user();
         $jobBiding = JobBiding::where('id', $request->job_biding_id)->firstOrFail();
@@ -61,6 +61,10 @@ class BidingOrderController extends Controller
             $this->orderWithCheckout($jobBiding->id);
             return redirect()->route('user.payment.method');
         }
+        elseif($request->payment == "payment-when-delivery"){
+            dd("hi");
+        }
+        
         else{
             $notify[] = ["error","Something is wrong"];
             return back()->withNotify($notify);

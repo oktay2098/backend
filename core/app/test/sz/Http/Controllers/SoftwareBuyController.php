@@ -66,7 +66,7 @@ class SoftwareBuyController extends Controller
     {
 
         $request->validate([
-            'payment' => 'required|in:wallet,checkout',
+            'payment' => 'required|in:wallet,checkout,payment-when-delivery',
             'software_id' => 'required|exists:software,id',
         ]);
         $user = Auth::user();
@@ -82,6 +82,9 @@ class SoftwareBuyController extends Controller
         elseif($request->payment == "checkout"){
             $this->orderWithCheckout($software->id);
             return redirect()->route('user.payment.method');
+        }
+        elseif($request->payment == "payment-when-delivery"){
+            dd("hi");
         }
         else{
             $notify[] = ["error","Something is wrong"];
