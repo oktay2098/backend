@@ -15,7 +15,7 @@
                                         @include($activeTemplate.'partials.manage_posts_tab')
                                     </div>
                                     <div class="col-md-2 text-end">
-                                        <a href="{{route('user.service.create')}}" class="btn btn-sm btn-green box--shadow1 text--small"style="background-color: #198754; color: #ffffff; border-radius: 5px; ><i class="fa fa-fw fa-plus"></i>@lang('Add New')</a>                          
+                                        <a href="{{route('user.service.create')}}" class="btn btn-sm btn-green rounded box--shadow1 text--small"><i class="fa fa-fw fa-plus"></i>@lang('Add New')</a>
                                     </div>
                                     </div>
         

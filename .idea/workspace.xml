@@ -5,13 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1cec3413-be9c-4ee7-ba4f-caf369215269" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/core/resources/views/templates/basic/partials/buyer_sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/resources/views/templates/basic/partials/buyer_sidebar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/resources/views/templates/basic/partials/seller_sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/resources/views/templates/basic/partials/seller_sidebar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/resources/views/templates/basic/user/buyer/job/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/resources/views/templates/basic/user/buyer/job/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/resources/views/templates/basic/user/seller/blog/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/resources/views/templates/basic/user/seller/blog/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/resources/views/templates/basic/user/seller/job_vacancy.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/resources/views/templates/basic/user/seller/job_vacancy.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/resources/views/templates/basic/user/seller/service/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/resources/views/templates/basic/user/seller/service/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/resources/views/templates/basic/user/seller/software/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/resources/views/templates/basic/user/seller/software/index.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,18 +167,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/xampp/htdocs/ana7r/backend",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/xampp/htdocs/ana7r/backend&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner scope="XML" />
@@ -199,6 +194,8 @@
       <option name="presentableId" value="Default" />
       <updated>1694950786545</updated>
       <workItem from="1694950787554" duration="443000" />
+      <workItem from="1695033096932" duration="482000" />
+      <workItem from="1695052795505" duration="89000" />
     </task>
     <servers />
   </component>
