@@ -507,7 +507,7 @@
                     </li>
                 @endif
 
-                @if (in_array('12', $staffAccess))
+                {{-- @if (in_array('12', $staffAccess))
                     <li class="sidebar-menu-item  {{ menuActive('admin.features.index') }}">
                         <a href="{{ route('admin.features.index') }}" class="nav-link"
                             data-default-url="{{ route('admin.features.index') }}">
@@ -515,7 +515,7 @@
                             <span class="menu-title">@lang('Features') </span>
                         </a>
                     </li>
-                @endif
+                @endif --}}
 
                 @if (in_array('13', $staffAccess))
                     <li class="sidebar-menu-item sidebar-dropdown">
