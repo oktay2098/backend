@@ -1,16 +1,17 @@
 <div class="col-xl-3 col-lg-3 mb-30">
     <div class="sidebar">
+        {{-- @if(!request()->routeIs('home'))
+            <div class="widget mb-30">
+                <h3 class="widget-title">@lang('CATEGORIES')</h3>
+                <ul class="category-list">
+                    @foreach($categorys as $category)
+                        <li><a href="{{route('service.category', [slug($category->name),$category->id])}}">{{__($category->name)}}</a></li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif --}}
 
-        {{-- <div class="widget mb-30">
-            <h3 class="widget-title">@lang('CATEGORIES')</h3>
-            <ul class="category-list">
-                 @foreach($categorys as $category)
-                    <li><a href="{{route('job.category', [slug($category->name),$category->id])}}">{{__($category->name)}}</a></li>
-                @endforeach
-            </ul>
-        </div> --}}
-
-        <form action="{{route('job.filter.search')}}" method="GET">
+        <form action="{{route('home.search.item')}}" method="GET">
             <div class="widget mb-30">
                 <h3 class="widget-title">@lang('FILTER BY LEVEL')</h3>
                 @foreach($ranks as $rank)
@@ -29,22 +30,38 @@
                 @endforeach
             </div>
 
+            {{-- <div class="widget mb-30">
+                <h3 class="widget-title">@lang('SERVICE INCLUDES')</h3>
+                @foreach($features as $feature)
+                    <div class="form-group custom-check-group">
+                        <input type="checkbox" id="{{$feature->id}}.'f'" name="feature[]" value="{{$feature->id}}" class="featureService"
+                        @if(!empty($featuresData))
+                            @foreach($featuresData as $val)
+                                @if($val == $feature->id)
+                                    checked
+                                @endif
+                            @endforeach
+                        @endif
+                    >
+                        <label for="{{$feature->id}}.'f'">{{__($feature->name)}}</label>
+                    </div>
+                @endforeach
+            </div> --}}
+
             <div class="widget mb-30">
                 <h3 class="widget-title">@lang('FILTER BY PRICE')</h3>
                 <div class="widget-range-area">
-                    <div id="slider-range"></div>
+                    <div id="slider-range2"></div>
                     <div class="price-range">
                         <div class="filter-btn">
                             <button type="submit" class="btn--base active">@lang('Filter Now')</button>
                         </div>
-                        <input type="text" id="amount" name="price" readonly>
+                        <input type="text" id="amount2" name="price" readonly>
                     </div>
                 </div>
             </div>
         </form>
-
         @include($activeTemplate.'partials.left_ad')
-
         <div class="widget mb-30">
             <h3 class="widget-title">@lang('FEATURED SERVICE')</h3>
             <ul class="small-item-list" id="featuredService">
@@ -65,7 +82,6 @@
                 @endforeach
             </ul>
         </div>
-        
         <div class="widget-btn text-center mb-30">
             @if($fservices->total() > 4)
                 <a href="javascript:void(0)" class="btn--base readMore" data-page="2" data-link="{{route('home')}}?page=">@lang('Show More')</a>
@@ -82,13 +98,16 @@
     $('.userLevel').on('click', function(){
         this.form.submit();
     });
-
+    $('.featureService').on('click', function(){
+        this.form.submit();
+    });
+    
     $('.readMore').on('click',function(){
-        var link = $(this).data('link');
-        var page = $(this).data('page');
-        var href = link + page;
-        var featuredServiceCount = {{$fservices->total()}};
-        $.get(href, function(response){
+       var link = $(this).data('link');
+       var page = $(this).data('page');
+       var href = link + page;
+       var featuredServiceCount = {{$fservices->total()}};
+       $.get(href, function(response){
             var html = $(response).find("#featuredService").html();
             $("#featuredService").append(html);
             var loadMoreCount = 4 * page;
@@ -97,6 +116,7 @@
             }
        });
        $(this).data('page', (parseInt(page) +1));
+        
     });
 
     @if(session()->has('range'))
@@ -107,13 +127,13 @@
         var data2 = {{$general->search_max}};
     @endif  
        
-    $("#slider-range").slider({
+    $("#slider-range2").slider({
       range: true,
       min: 0,
       max: {{$general->search_max}},
       values: [data1, data2],
       slide: function (event, ui) {
-        $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+        $("#amount2").val("$" + ui.values[0] + " - $" + ui.values[1]);
         $('input[name=min_price]').val(ui.values[0]);
         $('input[name=max_price]').val(ui.values[1]);
       },
@@ -124,6 +144,6 @@
         });
       }
     });
-    $("#amount").val("$" + $("#slider-range").slider("values", 0) + " - $" + $("#slider-range").slider("values", 1));
+    $("#amount2").val("$" + $("#slider-range2").slider("values", 0) + " - $" + $("#slider-range2").slider("values", 1));
 </script>
 @endpush

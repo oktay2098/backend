@@ -351,7 +351,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
 
         Route::middleware('staffaccess:12')->group(function () {
             //features
-            Route::get('features', 'FeaturesController@index')->name('features.index');
+            // Route::get('features', 'FeaturesController@index')->name('features.index');
             Route::post('features/store', 'FeaturesController@store')->name('features.store');
             Route::post('features/update', 'FeaturesController@update')->name('features.update');
         });
