@@ -24,7 +24,7 @@ class SoftwareBuyController extends Controller
         $this->activeTemplate = activeTemplate();
     }
 
-    public function CURLRequest($url){
+    public function CURLRequest($url, $isStore = true){
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
@@ -45,7 +45,9 @@ class SoftwareBuyController extends Controller
         }
 
         curl_close($curl);
-        Storage::disk('public')->put("exchangerate_" . now()->format('Y-m-d') . ".json", $response);
+        if($isStore){
+            Storage::disk('public')->put("exchangerate_" . now()->format('Y-m-d') . ".json", $response);
+        }
         return json_decode($response);
     }
 
@@ -59,16 +61,20 @@ class SoftwareBuyController extends Controller
                 'EG' => 'EGP',
             ];
 
-            // $userCurrLoc = $this->CURLRequest('https://ipinfo.io/json?token=025d7ae9f61eb4');
+            if(!session()->get('userCurrLoc')){
+                $userCurrLoc = $this->CURLRequest('https://ipinfo.io/json?token=025d7ae9f61eb4', false);
+                session()->put('userCurrLoc', $userCurrLoc);
+            }
+
+            $userCurrLoc = session()->get('userCurrLoc');
             $path = '../storage/app/public/' . "exchangerate_" . now()->format('Y-m-d') . ".json";
             if (@file_get_contents(resource_path($path)) === false){
                 $this->CURLRequest('https://api.exchangerate-api.com/v4/latest/USD');
             }
             $countryData = (array)json_decode(file_get_contents(resource_path('../storage/app/public/' . "exchangerate_" . now()->format('Y-m-d') . ".json")));
 
-            $userCurrLoc = "PH";
             $currencyRates = (array) $countryData['rates'];
-            $userCurrency = $listCountry[$userCurrLoc] ?? null;
+            $userCurrency = $listCountry[$userCurrLoc->country] ?? null;
 
             if(!$userCurrency)return null;
             
@@ -84,6 +90,7 @@ class SoftwareBuyController extends Controller
 
     public function softwareBuy($slug, $id)
     {
+        // return $this->convertCurrency(100);
         if(session()->has('coupon')){
             session()->forget('coupon');
         }
