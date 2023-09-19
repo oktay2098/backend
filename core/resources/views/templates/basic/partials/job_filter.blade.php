@@ -1,14 +1,14 @@
 <div class="col-xl-3 col-lg-3 mb-30">
     <div class="sidebar">
 
-        <div class="widget mb-30">
+        {{-- <div class="widget mb-30">
             <h3 class="widget-title">@lang('CATEGORIES')</h3>
             <ul class="category-list">
                  @foreach($categorys as $category)
                     <li><a href="{{route('job.category', [slug($category->name),$category->id])}}">{{__($category->name)}}</a></li>
                 @endforeach
             </ul>
-        </div>
+        </div> --}}
 
         <form action="{{route('job.filter.search')}}" method="GET">
             <div class="widget mb-30">

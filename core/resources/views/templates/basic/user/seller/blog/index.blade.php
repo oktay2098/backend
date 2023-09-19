@@ -130,14 +130,20 @@
 @if(@$section->element)
 <div class="row">
     <div class="col-lg-12">
+<<<<<<< HEAD
         @if($section->element->modal)
         <a href="javascript:void(0)" class="btn btn-sm btn--primary box--shadow1 text--small addBtn"><i class="fa fa-fw fa-plus"></i>@lang('Add New')</a>
     @else
    
         @endif
+=======
+       
+>>>>>>> 80f9641e8cc1991751fdfe57619552aa50fc1daf
         <div class="card">
             
+            
             <div class="card-body">
+<<<<<<< HEAD
                 <div class="table-responsive--sm table-responsive">
                     <div class="row">
                         <div class="col-md-10">
@@ -148,6 +154,24 @@
                         </div>
                         </div>
                         
+=======
+                <div class="table-section">
+                    <div class="row mb-2">
+                        <div class="col-md-10">
+                            @include($activeTemplate.'partials.manage_posts_tab')
+                        </div>
+                        <div class="col-md-2 text-end">
+                            @if($section->element->modal)
+                            <a href="javascript:void(0)" class="btn btn-sm btn-green box--shadow1 text-small rounded"><i class="fa fa-fw fa-plus"></i>@lang('Add New')</a>
+                        @else 
+                            <a href="{{route('user.blog-create')}}" class="btn btn-sm btn-green rounded box--shadow1 text--small"><i class="fa fa-fw fa-plus"></i>@lang('Add New')</a>
+                         @endif
+                      
+                        </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-xl-12">
+>>>>>>> 80f9641e8cc1991751fdfe57619552aa50fc1daf
                     <table class="custom-table">
                         <thead>
                         <tr>
@@ -241,6 +265,8 @@
                         @endforelse
                         </tbody>
                     </table>
+                </div>
+            </div>
                 </div>
             </div>
         </div>

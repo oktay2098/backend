@@ -51,7 +51,7 @@ class SoftwareBuyController extends Controller
         return json_decode($response);
     }
 
-    public function convertCurrency($amount = null){
+    public function convertCurrency($amount = null, $isCheckOnlyUserLoc = false){
         try {
             
             $listCountry = [
@@ -59,6 +59,25 @@ class SoftwareBuyController extends Controller
                 'AE' => 'AED',
                 'SA' => 'SAR',
                 'EG' => 'EGP',
+            ];
+
+            $currencySymbol = [
+                'PH' => [
+                    "label" => 'PHP',
+                    "symbol" => '₱',
+                ],
+                'AE' => [
+                    "label" => 'AED',
+                    "symbol" => 'AED',
+                ],
+                'SA' => [
+                    "label" => 'SAR',
+                    "symbol" => 'SAR',
+                ],
+                'EG' => [
+                    "label" => 'EGP',
+                    "symbol" => 'EGP',
+                ],
             ];
 
             if(!session()->get('userCurrLoc')){
@@ -77,6 +96,10 @@ class SoftwareBuyController extends Controller
             $userCurrency = $listCountry[$userCurrLoc->country] ?? null;
 
             if(!$userCurrency)return null;
+
+            if($isCheckOnlyUserLoc){
+                return $currencySymbol[$userCurrLoc->country];
+            }
             
             $fromRate = $currencyRates['USD'];
             $toRate = $currencyRates[$userCurrency];
@@ -90,7 +113,7 @@ class SoftwareBuyController extends Controller
 
     public function softwareBuy($slug, $id)
     {
-        // return $this->convertCurrency(100);
+        // return $this->convertCurrency(0, true);
         if(session()->has('coupon')){
             session()->forget('coupon');
         }

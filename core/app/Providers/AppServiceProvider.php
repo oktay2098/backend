@@ -44,7 +44,14 @@ class AppServiceProvider extends ServiceProvider
         $activeTemplate = activeTemplate();
         $general = GeneralSetting::first();
         $viewShare['paginator']=Paginator::useBootstrap();
+        
+        $userCurrency = app()->call('App\Http\Controllers\SoftwareBuyController@convertCurrency',  [ "amount" => 0, "isCheckOnlyUserLoc" => true ]);
+        if($userCurrency){
+            $general['cur_sym'] = $userCurrency['symbol'];
+            $general['cur_text'] = $userCurrency['label'];
+        }
         $viewShare['general'] = $general;
+
         $viewShare['activeTemplate'] = $activeTemplate;
         $viewShare['activeTemplateTrue'] = activeTemplate(true);
         $viewShare['language'] = Language::all();

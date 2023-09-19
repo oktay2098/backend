@@ -101,6 +101,13 @@ class SiteController extends Controller
         $services = Service::where('status', 1)->whereHas('category', function ($q) {
             $q->where('status', 1);
         })->with('user', 'user.rank')->inRandomOrder()->paginate(getPaginate());
+
+        foreach ($services as $key => $value) {
+            $softwareAmount = app()->call('App\Http\Controllers\SoftwareBuyController@convertCurrency',  [ "amount" => $value->price ]);
+            $value['price'] = $softwareAmount;
+        }
+        
+
         return view($this->activeTemplate . 'service', compact('pageTitle', 'services', 'emptyMessage','categorys'));
     }
     public function serviceDetails($slug, $id)
@@ -108,6 +115,10 @@ class SiteController extends Controller
         $service = Service::where('status', 1)->whereHas('category', function ($q) {
             $q->where('status', 1);
         })->where('id', decrypt($id))->firstOrFail();
+        
+        $softwareAmount = app()->call('App\Http\Controllers\SoftwareBuyController@convertCurrency',  [ "amount" => $service->price ]);
+        $service['price'] = $softwareAmount;
+
         $pageTitle = $service->title;
 
         $otherServices = Service::where('id', '!=', $service->id)->where('status', 1)->whereHas('category', function ($q) {
@@ -223,6 +234,12 @@ class SiteController extends Controller
         $jobs = Job::where('status', 1)->whereHas('category', function ($q) {
             $q->where('status', 1);
         })->with('user', 'user.rank', 'jobBiding')->paginate(getPaginate());
+
+        foreach ($jobs as $key => $value) {
+            $softwareAmount = app()->call('App\Http\Controllers\SoftwareBuyController@convertCurrency',  [ "amount" => $value->amount ]);
+            $value['amount'] = $softwareAmount;
+        }
+
         return view($this->activeTemplate . 'job', compact('pageTitle', 'jobs', 'emptyMessage','categorys'));
     }
 
@@ -230,6 +247,9 @@ class SiteController extends Controller
     {
         $job = Job::whereIn('status', [1,2])->where('id', decrypt($id))->firstOrFail();
         $pageTitle = $job->title;
+
+        $softwareAmount = app()->call('App\Http\Controllers\SoftwareBuyController@convertCurrency',  [ "amount" => $job->amount ]);
+        $job['amount'] = $softwareAmount;
 
         $otherServices = Service::where('status', 1)->whereHas('category', function ($q) {
             $q->where('status', 1);

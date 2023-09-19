@@ -32,6 +32,10 @@ class BookingController extends Controller
     	$service = Service::where('status', 1)->whereHas('category', function($q){
             $q->where('status', 1);
         })->where('id', decrypt($id))->firstOrFail();
+
+        $softwareAmount = app()->call('App\Http\Controllers\SoftwareBuyController@convertCurrency',  [ "amount" => $service->price ]);
+        $service['price'] = $softwareAmount;
+        
         return view($this->activeTemplate. 'service_booking', compact('pageTitle', 'service', 'coupon'));
     }
 

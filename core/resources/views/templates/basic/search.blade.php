@@ -34,11 +34,13 @@
                                 </li>
 
                                 <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="job-tab" data-bs-toggle="tab" data-bs-target="#software-content" type="button" role="tab" aria-controls="software-content" aria-selected="false">Software</button>
+                                <button class="nav-link" id="software-tab" data-bs-toggle="tab" data-bs-target="#software-content" type="button" role="tab" aria-controls="software-content" aria-selected="false">Software</button>
                                 </li>
+
                                  <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="job-tab" data-bs-toggle="tab" data-bs-target="#job-content" type="button" role="tab" aria-controls="contact" aria-selected="false">Job</button>
                                 </li>
+
                             </ul>
                                 <div class="tab-content" id="myTabContent ">
                                 <div class="tab-pane fade show active" id="service-content" role="tabpanel" aria-labelledby="service-tab">
@@ -103,7 +105,7 @@
                                
                                 <div class="tab-pane fade" id="software-content" role="tabpanel" aria-labelledby="software-tab">
                                     
-                                       <div class="row justify-content-center mb-30-none">
+                                       <div class="row justify-content-center mb-30-none mt-30">
                                     <div class="col-xl-9 col-lg-9 mb-30">
                                         <div class="item-card-wrapper list-view">
                                         @forelse($softwares as $software)
@@ -157,7 +159,7 @@
                                             {{$softwares->links()}}
                                         </nav>
                                     </div>
-                                   @include($activeTemplate.'partials.home_filter')
+                                   @include($activeTemplate.'partials.general_filter_software')
                                 </div>
                                     
                                 
@@ -165,7 +167,7 @@
                                 
                                  <div class="tab-pane fade" id="job-content" role="tabpanel" aria-labelledby="job-tab">
                                      
-                                       <div class="row justify-content-center mb-30-none">
+                                       <div class="row justify-content-center mb-30-none mt-30">
                                     <div class="col-xl-9 col-lg-9 mb-30">
                                         <div class="item-card-wrapper list-view">
                                         @forelse($jobs as $job)
@@ -218,7 +220,7 @@
                                             {{$jobs->links()}}
                                         </nav>
                                     </div>
-                                   @include($activeTemplate.'partials.home_filter')
+                                   @include($activeTemplate.'partials.general_filter_job')
                                 </div>
                                     
                                 
