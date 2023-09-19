@@ -714,6 +714,8 @@ Route::get('/product/search/filter', 'FilterController@softwareItemSearch')->nam
 Route::get('/product/category/{slug}/{id}', 'FilterController@softwareCategory')->name('software.category');
 Route::get('/product/sub/category/{slug}/{id}', 'FilterController@softwareSubCategory')->name('software.sub.category');
 Route::get('/product/search/', 'FilterController@softwareSearch')->name('software.search');
+Route::get('/product/search/country', 'FilterController@softwareCountrySearch')->name('software.search.country');
+
 
 
 //job
