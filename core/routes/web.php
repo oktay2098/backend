@@ -351,7 +351,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
 
         Route::middleware('staffaccess:12')->group(function () {
             //features
-            Route::get('features', 'FeaturesController@index')->name('features.index');
+            // Route::get('features', 'FeaturesController@index')->name('features.index');
             Route::post('features/store', 'FeaturesController@store')->name('features.store');
             Route::post('features/update', 'FeaturesController@update')->name('features.update');
         });
@@ -569,6 +569,9 @@ Route::name('user.')->group(function () {
                 Route::get('/withdraw/preview', 'UserController@withdrawPreview')->name('withdraw.preview');
                 Route::post('/withdraw/preview', 'UserController@withdrawSubmit')->name('withdraw.submit');
                 Route::get('/withdraw/history', 'UserController@withdrawLog')->name('withdraw.history');
+
+                // History
+            Route::get('/payment/history', 'UserController@history')->name('payment.history');;
 
                 //Home Controller
                 Route::get('service/booking/', 'HomeController@serviceBookeds')->name('booking.service');

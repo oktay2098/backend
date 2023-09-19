@@ -20,7 +20,11 @@ class LanguageUrlMiddleware
             if ($_GET['lang'] == 'en') {
             session()->put('lang', 'en');
                 app()->setLocale(session('lang',  'en'));
-            }
+            }else if ($_GET['lang'] == 'ar') {
+                session()->put('lang', 'ar');
+                    app()->setLocale(session('lang',  'ar'));
+                }
+            
             return $next($request);
         }
         
