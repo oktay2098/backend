@@ -18,12 +18,14 @@
                             <div class="card-body">
                                 <div class="card-form-wrapper">
                                     <div class="row justify-content-center">
+                                       {{-- Import the SQL file included wih the uploaded git directory to remove 'courses' and 'training' from the dropdown --}}
                                         <div class="col-xl-12 col-lg-12 form-group">
                                             <label>@lang('Product Type')*</label>
                                             <select class="form-control bg--gray" name="product_type" id="product_type">
                                                     <option selected="" disabled="">@lang('Select Product Type')</option>
                                                 @foreach($productTypes as $proType)
-                                                    <option value="{{__($proType->id)}}" @if($proType->id==1) selected @endif>{{__($proType->name)}}</option>
+                                                @if($proType->id==1) <option value="{{__($proType->id)}}" selected>{{__($proType->name)}}</option>@endif
+                                                @if($proType->id==2) <option value="{{__($proType->id)}}" selected>{{__($proType->name)}}</option>@endif
                                                 @endforeach
                                             </select>
                                         </div>
@@ -68,7 +70,7 @@
                                             <input type="text" name="title" maxlength="255" value="{{old('title')}}" class="form-control" placeholder="@lang("Enter Title")" required="">
                                         </div>
                                         
-                                        <div class="col-xl-6 col-lg-6 form-group conditional-div">
+                                        {{--<div class="col-xl-6 col-lg-6 form-group conditional-div">
                                             <label>@lang('Category')*</label>
                                             <select class="form-control bg--gray" name="category" id="category">
                                                     <option selected="" disabled="">@lang('Select Category')</option>
@@ -76,14 +78,19 @@
                                                     <option value="{{__($category->id)}}">{{__($category->name)}}</option>
                                                 @endforeach 
                                             </select>
-                                        </div>
+                                        </div>--}}
+
+                                        {{--made changes here--}}
                                         <div class="col-xl-6 col-lg-6 form-group conditional-div">
-                                            <label for="subCategorys">@lang('Sub Category')</label>
-                                                <select name="subcategory" class="form-control mySubCatgry" id="subCategorys">
+                                            <label for="subCategorys">{{--@lang('Sub Category')--}} @lang('Category')</label>       
+                                            <select name="subcategory" class="form-control mySubCategory" id="subCategorys">
+                                                @foreach($subCategories as $subCategory) 
+                                                <option value="{{__($subCategory->id)}}">{{__($subCategory->name)}}</option>
+                                                @endforeach
                                                 </select>
                                         </div>
 
-                                        <div class="col-xl-6 col-lg-6 form-group conditional-div" id="feature_div">
+                                        {{--<div class="col-xl-6 col-lg-6 form-group conditional-div" id="feature_div">
                                             <label>@lang('Include Feature')*</label>
                                             @foreach($features as $feature)
                                                 <div class="form-group custom-check-group">
@@ -101,6 +108,16 @@
                                             </div>
                                             <small class="text-danger product_codeExits"></small>
                                         </div>
+
+                                        <div class="col-xl-6 col-lg-6 form-group conditional-div" id="product_code_div">
+                                            <label>@lang('Tag')*</label>
+                                            <div class="input-group mb-3">
+                                                <input type="text" class="form-control checkProductCode" name="product_code" value="{{old('product_code')}}" placeholder="@lang('Enter Product Code')" required="">
+                                                
+                                            </div>
+                                            <small class="text-danger product_codeExits"></small>
+                                        </div>--}}
+
                                         <div class="col-xl-6 col-lg-6 form-group conditional-div">
                                             <label>@lang('Price')*</label>
                                             <div class="input-group mb-3">
@@ -109,24 +126,24 @@
                                             </div>
                                         </div>
 
+
                                         <div class="col-xl-6 col-lg-6 form-group conditional-div select2Tag" id="tag_div">
                                             <label>@lang('Tag')*</label>
-                                            <select class="form-control select2" name="tag[]" multiple="multiple" >
-                                            </select>
+                                            <input type="text" name="tag" maxlength="255" value="{{old('tag[]')}}" class="form-control"  >
                                             <small>@lang('Tag and enter press')</small>
-                                        </div>
-
-                                        <div class="col-xl-6 col-lg-6 form-group conditional-div select2Tag" id="file_div">
-                                            <label>@lang('File Include')*</label>
-                                            <select class="form-control select2" name="file_include[]" multiple="multiple" >
-                                            </select>
-                                            <small>@lang('File and enter press')</small>
                                         </div>
 
                                         <div class="col-xl-6 col-lg-6 form-group conditional-div" id="demo_div">
                                             <label>@lang('Demo Url')*</label>
                                             <input type="text" name="url" maxlength="255" value="{{old('url')}}" class="form-control" placeholder="@lang("Enter url")" >
                                             <small>@lang('https://example.com/')</small>
+                                        </div>
+
+                                      {{--  <div class="col-xl-6 col-lg-6 form-group conditional-div select2Tag" id="file_div">
+                                            <label>@lang('File Include')*</label>
+                                            <select class="form-control select2" name="file_include[]" multiple="multiple" >
+                                            </select>
+                                            <small>@lang('File and enter press')</small>
                                         </div>
 
                                         <div class="col-xl-6 col-lg-6 form-group conditional-div" id="document_div">
@@ -138,7 +155,7 @@
                                                 </div>
                                                 <small>@lang('Supported file: only pdf file')</small>
                                             </div>
-                                        </div>
+                                        </div>--}}
 
                                         <div class="col-xl-12 col-lg-12 form-group conditional-div" id="zip_div">
                                             <label>@lang('Add Product')*</label>
@@ -154,7 +171,7 @@
                                             <div class="card custom--card p-0 mb-3">
                                                 <div class="card-header d-flex flex-wrap align-items-center justify-content-between">
                                                     <h4 class="card-title mb-0">
-                                                        @lang('Product stock')
+                                                        @lang('Product Verities(Verities in different size and color)')
                                                     </h4>
                                                     <div class="card-btn">
                                                         <button type="button" class="btn--base addExtraVerities"><i class="las la-plus"></i> @lang('Add New')</button>
@@ -166,7 +183,7 @@
                                                             <input type="text" name="product_name[]" id="prdname" value="" class="form-control" placeholder="@lang("Product Name")" >
                                                         </div>
                                                         <div class="col-xl-3 col-lg-3">
-                                                            <input type="text" name="inventory[]"  id="prdqty" value="" class="form-control" placeholder="@lang('Stock')">
+                                                            <input type="text" name="inventory[]"  id="prdqty" value="" class="form-control" placeholder="@lang('Inventory')">
                                                         </div>
                                                         <div class="col-xl-2 col-lg-2">
                                                             <button class="btn btn--danger text-white border--rounded removeExtraVerities"><i class="fa fa-times"></i></button>
@@ -355,9 +372,9 @@
     $("#product_code_div").css("display", "block");
     $("#screenshot_title").text("Pictures and Media");
     $("#feature_div").css("display", "none");
-    $("#tag_div").css("display", "none");
+    $("#tag_div").css("display", "block");
     $("#file_div").css("display", "none");
-    $("#demo_div").css("display", "none");
+    $("#demo_div").css("display", "block");
     $("#document_div").css("display", "none");
     $("#zip_div").css("display", "none");
     $("#verities_div").css("display","block");
@@ -412,12 +429,9 @@
                 var data = {product_code:value,_token:token};
                 $.post(url,data,function(response) {
                   if (response['is_exist'] == true) {
-                      $('.product_codeExits').text('@lang('Product Code is Already Taken!')');
+                      $('.product_codeExits').text('Product Code is Already Taken!');
                   }else{
                     $('.product_codeExits').text('')
                   }
                 });
             });
-
-</script>
-@endpush

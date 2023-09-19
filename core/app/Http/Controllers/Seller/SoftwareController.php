@@ -31,12 +31,14 @@ class SoftwareController extends Controller
     	return view($this->activeTemplate . 'user.seller.software.index', compact('pageTitle', 'softwares', 'emptyMessage'));
     }
 
+
 	public function create()
 	{
 		$pageTitle = "Upload Software";
         $categories = Category::where('type', 2)->where('status', 1)->orderby('id', 'DESC')->inRandomOrder()->get();
+        $subCategories = SubCategory::orderby('id', 'DESC')->inRandomOrder()->get();
 		$features = Features::latest()->get();
-		return view($this->activeTemplate . 'user.seller.software.create', compact('pageTitle', 'features','categories'));
+    return view($this->activeTemplate . 'user.seller.software.create', compact('pageTitle', 'features', 'subCategories','categories'));
 	}
 
 
