@@ -57,6 +57,22 @@ class AppServiceProvider extends ServiceProvider
         })->paginate(4);
         $viewShare['countries']= json_decode(file_get_contents(resource_path('views/partials/country.json')));
         $viewShare['shippingTypes']=['Self Shipping','I`m free Shipping(Soon)','External Shipping(Soon)'];
+        
+         //======================Sorting Country by largest products
+         $SQLcountry=Software::whereNotNull('available_in_country')->get();
+         $country_array=array();
+                    foreach($SQLcountry as $key => $country){
+                      $a=explode(",",$country->available_in_country); 
+                      $x=count($a);
+                        for ($y=0; $y<$x; $y++) {
+                            array_push($country_array,$a[$y]);
+                            }
+                    }
+        $ss=array_count_values($country_array);
+        arsort($ss);
+        $viewShare['countriesls'] = collect($ss);
+        //======================Sorting Country by largest products
+
         view()->share($viewShare);
         
         view()->composer('admin.partials.sidenav', function ($view) {
