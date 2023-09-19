@@ -92,26 +92,8 @@
                                                 </select>
                                         </div>
 
-                                        
-                                        <div class="col-xl-6 col-lg-6 form-group select2Tag">
-                                            <label>@lang('Tag')*</label>
-                                            <select class="form-control select2" name="tag[]" multiple="multiple" required="">
-                                                @foreach($service->tag as $name)
-                                                <option value="{{$name}}" selected="true">{{__($name)}}</option>
-                                                @endforeach
-                                            </select>
-                                            <small>@lang('Tag and enter press')</small>
-                                        </div>
-                                        
                                         <div class="col-xl-6 col-lg-6 form-group">
-                                            <label>@lang('Price')*</label>
-                                            <div class="input-group mb-3">
-                                                <input type="text" class="form-control" name="price" value="{{getAmount($service->price)}}" placeholder="@lang('Enter Price')" required="">
-                                                <span class="input-group-text" id="basic-addon2">{{__($general->cur_text)}}</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-6 col-lg-6 form-group">
-                                            {{-- <label>@lang('Include Feature')*</label>
+                                            <label>@lang('Include Feature')*</label>
                                             @foreach($features as $feature)
                                                 <div class="form-group custom-check-group">
                                                     <input type="checkbox" name="features[]"
@@ -121,7 +103,25 @@
                                                      id="{{$feature->id}}" value="{{$feature->id}}">
                                                     <label for="{{$feature->id}}">{{__($feature->name)}}</label>
                                                 </div>
-                                            @endforeach --}}
+                                            @endforeach
+                                        </div>
+
+                                        <div class="col-xl-6 col-lg-6 form-group select2Tag">
+                                            <label>@lang('Tag')*</label>
+                                            <select class="form-control select2" name="tag[]" multiple="multiple" required="">
+                                                @foreach($service->tag as $name)
+                                                    <option value="{{$name}}" selected="true">{{__($name)}}</option>
+                                                @endforeach
+                                            </select>
+                                            <small>@lang('Tag and enter press')</small>
+                                        </div>
+
+                                        <div class="col-xl-6 col-lg-6 form-group">
+                                            <label>@lang('Price')*</label>
+                                            <div class="input-group mb-3">
+                                                <input type="text" class="form-control" name="price" value="{{getAmount($service->price)}}" placeholder="@lang('Enter Price')" required="">
+                                              <span class="input-group-text" id="basic-addon2">{{__($general->cur_text)}}</span>
+                                            </div>
                                         </div>
 
                                         <div class="col-xl-6 col-lg-6 form-group">

@@ -154,7 +154,7 @@
                                             <div class="card custom--card p-0 mb-3">
                                                 <div class="card-header d-flex flex-wrap align-items-center justify-content-between">
                                                     <h4 class="card-title mb-0">
-                                                        @lang('Product stock')
+                                                        @lang('Product Verities(Verities in different size and color)')
                                                     </h4>
                                                     <div class="card-btn">
                                                         <button type="button" class="btn--base addExtraVerities"><i class="las la-plus"></i> @lang('Add New')</button>
@@ -166,7 +166,7 @@
                                                             <input type="text" name="product_name[]" id="prdname" value="" class="form-control" placeholder="@lang("Product Name")" >
                                                         </div>
                                                         <div class="col-xl-3 col-lg-3">
-                                                            <input type="text" name="inventory[]"  id="prdqty" value="" class="form-control" placeholder="@lang('Stock')">
+                                                            <input type="text" name="inventory[]"  id="prdqty" value="" class="form-control" placeholder="@lang('Inventory')">
                                                         </div>
                                                         <div class="col-xl-2 col-lg-2">
                                                             <button class="btn btn--danger text-white border--rounded removeExtraVerities"><i class="fa fa-times"></i></button>
@@ -412,7 +412,7 @@
                 var data = {product_code:value,_token:token};
                 $.post(url,data,function(response) {
                   if (response['is_exist'] == true) {
-                      $('.product_codeExits').text('@lang('Product Code is Already Taken!')');
+                      $('.product_codeExits').text('Product Code is Already Taken!');
                   }else{
                     $('.product_codeExits').text('')
                   }

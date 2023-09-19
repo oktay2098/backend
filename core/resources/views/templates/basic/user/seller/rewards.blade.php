@@ -22,8 +22,8 @@ $invited_rewarded_users_amount=array();
                                     <div style="width: 80%;float:left">
                                         <p style="color: white;"> <i style="font-size: 30px;" class="las la-wallet"></i>
                                             <span style="font-size: 30px;" id="total_balanch_show"></span><br>
-                                            <span>@lang('Current Balance')</span><br>
-                                            <span>@lang('When the profit reaches $10, You can submit balance for review.')</span>
+                                            <span>Current Balance</span><br>
+                                            <span>When the profit reaches $10, You can submit balance for review. After he can add to the actual balance where you can withdraw it.</span>
                                         </p>
                                     </div>
                                     <div style="width: 20%;float:left">
@@ -42,7 +42,7 @@ $invited_rewarded_users_amount=array();
 
                                         <input style="display: none;" type="number" id="total_profit_amount" name="total_profit_amount">
                                         <input style="display: none;" type="number" id="profit_amount" name="profit_amount[]">
-                                        <button class="btn" id="request_review_button" style="background-color: white;color:black;" type="button" title="Request Review" data-bs-toggle="modal" data-bs-target="#requesReviewModal">@lang('Request a Review')</i>
+                                        <button class="btn" id="request_review_button" style="background-color: white;color:black;" type="button" title="Request Review" data-bs-toggle="modal" data-bs-target="#requesReviewModal"> Request a Review</i>
                                         </button>
 
                                     </div>
@@ -125,7 +125,7 @@ $invited_rewarded_users_amount=array();
                         @if($reward)
                         <div style="margin-top: 10px;" class="card">
                             <div class="card-header">
-                                <h3 style="text-align:center">@lang('Rewards')</h3>
+                                <h3 style="text-align:center">Rewards</h3>
                             </div>
                             <div class="card-body">
                                 <div class="table-section">
@@ -177,7 +177,7 @@ $invited_rewarded_users_amount=array();
                         @endif
                         <div style="margin-top: 10px;" class="card">
                             <div class="card-header">
-                                <h3 style="text-align:center">@lang('Invited Users')</h3>
+                                <h3 style="text-align:center">Invited Users</h3>
                             </div>
                             <div class="card-body">
                                 <div class="table-section">
@@ -247,7 +247,7 @@ $invited_rewarded_users_amount=array();
                                                         </tr>
                                                         @endforelse
                                                         <tr>
-                                                            <td style="text-align: right;" colspan="2"><strong>@lang('Total Profit:')</strong></td>
+                                                            <td style="text-align: right;" colspan="2"><strong> Total Profit:</strong></td>
                                                             <td>${{ number_format($grandTotal, 2) }}</td>
                                                             @php
                                                             $grandTotal =$grandTotal+$totalProfitFromReferral ;

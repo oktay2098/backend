@@ -7,8 +7,7 @@
                 @include($activeTemplate . 'partials.seller_sidebar')
                 <div class="col-xl-9 col-lg-12 mb-30">
                     <div class="dashboard-sidebar-open"><i class="las la-bars"></i> @lang('Menu')</div>
-                    <form class="user-profile-form" 
-                    action="{{route('user.software.updateManage', $software->id)}}" method="POST" enctype="multipart/form-data">
+                    <form class="user-profile-form" action="{{route('user.software.updateManage', $software->id)}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="card custom--card">
                             <div class="card-header d-flex flex-wrap align-items-center justify-content-between">
@@ -30,8 +29,7 @@
                                         <div class="col-xl-6 col-lg-6 form-group conditional-div">
                                             <label>@lang('Shipping Charges(0 for free)')*</label>
                                             <div class="input-group mb-3">
-                                                <input type="text" class="form-control" name="shipping_charge"
-                                                 value="{{getAmount($software->shipping_charge)}}" placeholder="@lang('Enter Shipping Charge')" required="">
+                                                <input type="text" class="form-control" name="shipping_charge" value="{{getAmount($software->shipping_charge)}}" placeholder="@lang('Enter Shipping Charge')" required="">
                                               <span class="input-group-text" id="basic-addon2">{{__($general->cur_text)}}</span>
                                             </div>
                                         </div>
@@ -43,7 +41,7 @@
                                             </div>
                                         </div>
                                         <div class="col-xl-12 col-lg-12 form-group conditional-div">
-                                            <span>@lang('Shipping price will be the same for all countries and you must adhere to the shipping time. After the time expires, the buyer can cancel the order.')</span>
+                                            <span>Note:* Shipping price will be the same for all countries and you must adhere to the shipping time. After the time expires, the buyer can cancel the order.</span>
                                         </div>
                                         <div class="col-xl-12 col-lg-12 form-group conditional-div">
                                             <label>@lang('Shipping is Available for')*</label>
@@ -60,7 +58,7 @@
                                             <div class="card custom--card p-0 mb-3">
                                                 <div class="card-header d-flex flex-wrap align-items-center justify-content-between">
                                                     <h4 class="card-title mb-0">
-                                                        @lang('Drop Shipping')
+                                                        @lang('Preparing Drop Shipping')
                                                     </h4>
                                                 </div>
                                                 <div class="card-body addVerities">
@@ -71,23 +69,20 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-xl-6 col-lg-6 form-group conditional-div">
-                                                        <label>@lang('Recommandation of selling price')* </label>
+                                                        <label>@lang('Recommandation of selling price')*</label>
                                                         <div class="input-group mb-3">
-                                                            <input type="text" class="form-control" name="recommand_seling_price"
-                                                             value="{{$software->recommand_seling_price}}" 
-                                                             placeholder="@lang('Enter Recommandation of Selling Price')" required="">
+                                                            <input type="text" class="form-control" name="recommand_seling_price" value="{{$software->recommand_seling_price}}" placeholder="@lang('Enter Recommandation of Selling Price')" required="">
                                                           <span class="input-group-text" id="basic-addon2">USD</span>
                                                         </div>
-                                                        <label>@lang('should be greater than') {{getAmount($software->shipping_charge)+$software->amount }} </label>
                                                     </div>
 
                                                     <div class="col-xl-12 col-lg-12 form-group conditional-div" id="verities_div" style="display:none;">
                                                         <div class="card custom--card p-0 mb-3">
                                                             <div class="card-header d-flex flex-wrap align-items-center justify-content-between">
                                                                 <h4 class="card-title mb-0">
-                                                                    @lang('Link to preview')
+                                                                    @lang('Links to view or Download priview files')
                                                                 </h4>
-                                                                <!--<span onclick="addMore()" class="input-group-text" id="basic-addon2">+ Add New</span>-->
+                                                                <span onclick="addMore()" class="input-group-text" id="basic-addon2">+ Add New</span>
                                                             </div>
                                                             <div class="card-body addVerities">
                                                                 <div id="demo_url" class="col-xl-8 col-lg-8 form-group conditional-div">
@@ -96,11 +91,11 @@
                                                                     @endphp
                                                                     @forelse ($urls as $url)
                                                                         <div class="input-group mb-3">
-                                                                            <input type="text" class="form-control" name="demo_url[]" value="{{$url}}" >
+                                                                            <input type="text" class="form-control" name="demo_url[]" value="{{$url}}" required="">
                                                                         </div>
                                                                     @empty
                                                                         <div class="input-group mb-3">
-                                                                            <input type="text" class="form-control" name="demo_url[]" value="" >
+                                                                            <input type="text" class="form-control" name="demo_url[]" value="" required="">
                                                                         </div>
                                                                     @endforelse
                                                                     
@@ -113,6 +108,28 @@
                                             </div>
                                         </div>
 
+                                        <div class="col-xl-12 col-lg-12 form-group conditional-div" id="verities_div" style="display:none;">
+                                            <div class="card custom--card p-0 mb-3">
+                                                <div class="card-header d-flex flex-wrap align-items-center justify-content-between">
+                                                    <h4 class="card-title mb-0">
+                                                        @lang('Additional Services (Coming Soon)')
+                                                    </h4>
+                                                </div>
+                                                <div class="card-body addVerities">
+                                                    <div class="custom-file-wrapper removeVerities">
+                                                        <div class="col-xl-12 col-lg-12">
+                                                            <p>Add offer(Coupon)*</p>
+                                                            <p> Return the Product*</p>
+                                                            <p>Extract All order data*</p>
+                                                        </div>
+                                                        
+                                                        
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
 
                                        
 
@@ -250,7 +267,7 @@
 
     $(document).ready(function() {
         $('.select2').select2({
-           // tags: true
+            tags: true
         });
     });
 

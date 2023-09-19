@@ -92,15 +92,15 @@ dd(decide_resize($size,$max))
                                                         </div>
                                                         @if($software->product_type == 2)
                                                         <div class="right mb-20">
-                                                            <a href="{{$software->demo_url}}" target="__blank" class="btn--base text-white "><i class="las la-shopping-cart"></i>@lang('Preview')</a>
+                                                            <a href="{{$software->demo_url}}" target="__blank" class="btn--base text-white "><i class="las la-shopping-cart"></i> @lang('Preview')</a>
                                                         </div>
                                                         @endif
                                                         @if($software->product_type == 1)
                                                         <div class="right mb-20">
-                                                            <a href="{{$software->demo_url}}" target="__blank" class="btn--base text-white download_file"><i class="las la-shopping-cart"></i>@lang('Preview')</a>
+                                                            <a href="{{$software->demo_url}}" target="__blank" class="btn--base text-white download_file"><i class="las la-shopping-cart"></i>Download All Product Video</a>
                                                         </div>
                                                         <div class="right mb-20">
-                                                            <button class="btn--base text-white" onclick="downloadImages()">@lang('Download All Images')</button>
+                                                            <button class="btn--base text-white" onclick="downloadImages()">Download All Images</button>
                                                         </div>
                                                         @endif
                                                     </div>
@@ -421,31 +421,28 @@ dd(decide_resize($size,$max))
                                             <div class="profile-widget">
                                                 <div class="profile-widget-header">
                                                     <div class="profile-widget-thumb">
-                                                        <img src="{{ userDefaultImage(imagePath()['profile']['user_bg']['path'].'/'. $software->user->bg_image, 'background_image') }}" alt="@lang('User background image')">
+                                                        <img src="{{asset('default.png')}}" alt="@lang('User background image')">
                                                     </div>
                                                     <div class="profile-widget-author">
                                                         <div class="thumb">
-                                                            <img src="{{ userDefaultImage(imagePath()['profile']['user']['path'].'/'. $software->user->image,'profile_image') }}" alt="{{__($software->user->username)}}">
+                                                            <img src="{{asset('default.png')}}" alt="">
                                                         </div>
                                                         <div class="content">
                                                             <h4 class="name">
-                                                                <a href="{{route('profile', $software->user->username)}}">{{__($software->user->username)}}</a>
+                                                                Anahr Products
                                                             </h4>
-                                                            <span class="designation">{{__(@$software->user->designation)}}</span>
+                                                         
                                                         </div>
                                                     </div>
                                                     <div class="profile-widget-author-meta mb-10-none">
-                                                        <div class="location mb-10">
-                                                            <i class="fas fa-map-marker-alt"></i>
-                                                            <span>{{__(@$software->user->address->country)}}</span>
-                                                        </div>
+                                                        
                                                         <div class="btn-area mb-10">
-                                                            <a href="{{route('profile', $software->user->username)}}" class="btn--base">@lang('View Profile')</a>
+                                                            <a href="/product" class="btn--base">@lang('View All Products')</a>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="profile-list-area">
-                                                    <ul class="details-list">
+                                                    <ul class="details-list" style="display:none">
                                                         <li><span>@lang('Total Service')</span> <span>{{__($totalService)}}</span></li>
                                                         <li><span>@lang('In Progress')</span> <span>{{$workInprogress}}</span></li>
                                                         <li><span>@lang('Rating')</span> <span> <span class="ratings"><i class="las la-star text--warning"></i></span> ({{getAmount($reviewRataingAvg, 2)}})</span>
@@ -459,7 +456,7 @@ dd(decide_resize($size,$max))
                                                         	@endif
                                                         </li>
                                                     </ul>
-                                                    <div class="widget-btn mt-20">
+                                                    <div class="widget-btn mt-20"  style="display:none">
                                                         <a href="{{route('profile', $software->user->username)}}" class="btn--base w-100">@lang('Hire Me')</a>
                                                     </div>
                                                 </div>

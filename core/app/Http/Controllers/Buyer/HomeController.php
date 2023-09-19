@@ -156,7 +156,6 @@ class HomeController extends Controller
      */
     public function depositHistory()
     {
-        // dd('test deposit');
         $pageTitle = 'Deposit History';
         $emptyMessage = 'No history found.';
         $logs = auth()->user()->deposits()->with(['gateway'])->orderBy('id', 'desc')->paginate(getPaginate());

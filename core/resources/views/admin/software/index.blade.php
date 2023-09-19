@@ -173,12 +173,14 @@
 
 
 @push('breadcrumb-plugins')
+<a href="{{route('admin.software.add')}}" class="btn btn-primary  ">Yeni</a>
 <form action="{{route('admin.software.search', $scope ?? str_replace('admin.software.', '', request()->route()->getName())) }}" method="GET" class="form-inline float-sm-right bg--white mb-2 ml-0 ml-xl-2 ml-lg-0">
     <div class="input-group has_append">
         <input type="text" name="search" class="form-control" placeholder="@lang('Username or price')" value="{{ $search ?? '' }}">
         <div class="input-group-append">
             <button class="btn btn--primary" type="submit"><i class="fa fa-search"></i></button>
         </div>
+        
     </div>
 </form>
 

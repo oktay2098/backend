@@ -1,6 +1,6 @@
 <div class="col-xl-3 col-lg-3 mb-30">
     <div class="sidebar">
-        {{-- @if(!request()->routeIs('home'))
+        @if(!request()->routeIs('home'))
             <div class="widget mb-30">
                 <h3 class="widget-title">@lang('CATEGORIES')</h3>
                 <ul class="category-list">
@@ -9,7 +9,7 @@
                     @endforeach
                 </ul>
             </div>
-        @endif --}}
+        @endif
 
         <form action="{{route('home.search.item')}}" method="GET">
             <div class="widget mb-30">
@@ -30,7 +30,7 @@
                 @endforeach
             </div>
 
-            {{-- <div class="widget mb-30">
+            <div class="widget mb-30">
                 <h3 class="widget-title">@lang('SERVICE INCLUDES')</h3>
                 @foreach($features as $feature)
                     <div class="form-group custom-check-group">
@@ -46,7 +46,7 @@
                         <label for="{{$feature->id}}.'f'">{{__($feature->name)}}</label>
                     </div>
                 @endforeach
-            </div> --}}
+            </div>
 
             <div class="widget mb-30">
                 <h3 class="widget-title">@lang('FILTER BY PRICE')</h3>

@@ -55,9 +55,6 @@ Route::namespace('Api')->name('api.')->group(function(){
             Route::get('deposit/history', 'UserController@depositHistory');
 
             Route::get('transactions', 'UserController@transactions');
-			
-		
-			
 
 	    });
 	});
