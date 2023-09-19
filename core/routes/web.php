@@ -169,6 +169,8 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
         Route::middleware('staffaccess:6')->group(function () {
             //Manage Software
             Route::get('product/index', 'SoftwareController@index')->name('software.index');
+            Route::get('product/add', 'SoftwareController@add')->name('software.add');
+            Route::post('product/store', 'SoftwareController@store')->name('software.store');
             Route::get('product/pending', 'SoftwareController@pending')->name('software.pending');
             Route::get('product/approved', 'SoftwareController@approved')->name('software.approved');
             Route::get('product/cancel', 'SoftwareController@cancel')->name('software.cancel');
@@ -351,7 +353,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
 
         Route::middleware('staffaccess:12')->group(function () {
             //features
-            // Route::get('features', 'FeaturesController@index')->name('features.index');
+            Route::get('features', 'FeaturesController@index')->name('features.index');
             Route::post('features/store', 'FeaturesController@store')->name('features.store');
             Route::post('features/update', 'FeaturesController@update')->name('features.update');
         });
@@ -570,9 +572,6 @@ Route::name('user.')->group(function () {
                 Route::post('/withdraw/preview', 'UserController@withdrawSubmit')->name('withdraw.submit');
                 Route::get('/withdraw/history', 'UserController@withdrawLog')->name('withdraw.history');
 
-                // History
-            Route::get('/payment/history', 'UserController@history')->name('payment.history');;
-
                 //Home Controller
                 Route::get('service/booking/', 'HomeController@serviceBookeds')->name('booking.service');
                 Route::get('service/booking/details/{id}', 'HomeController@serviceBookingDetails')->name('booking.service.details');
@@ -714,8 +713,6 @@ Route::get('/product/search/filter', 'FilterController@softwareItemSearch')->nam
 Route::get('/product/category/{slug}/{id}', 'FilterController@softwareCategory')->name('software.category');
 Route::get('/product/sub/category/{slug}/{id}', 'FilterController@softwareSubCategory')->name('software.sub.category');
 Route::get('/product/search/', 'FilterController@softwareSearch')->name('software.search');
-Route::get('/product/search/country', 'FilterController@softwareCountrySearch')->name('software.search.country');
-
 
 
 //job

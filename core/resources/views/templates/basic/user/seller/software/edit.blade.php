@@ -177,7 +177,7 @@
                                             <div class="card custom--card p-0 mb-3">
                                                 <div class="card-header d-flex flex-wrap align-items-center justify-content-between">
                                                     <h4 class="card-title mb-0">
-                                                        @lang('Product stock')
+                                                        @lang('Product Verities(Verities in different size and color)')
                                                     </h4>
                                                     <div class="card-btn">
                                                         <button type="button" class="btn--base addExtraVerities"><i class="las la-plus"></i> @lang('Add New')</button>
@@ -191,7 +191,7 @@
                                                             <input type="text"  maxlength="255" value="{{$verity->name}}" class="form-control" placeholder="@lang("Product Name")" required="">
                                                         </div>
                                                         <div class="col-xl-3 col-lg-3">
-                                                            <input type="text" id="qty_{{$verity->id}}" maxlength="255" value="{{$verity->inventory}}" class="form-control" placeholder="@lang("Stock")" required="">
+                                                            <input type="text" id="qty_{{$verity->id}}" maxlength="255" value="{{$verity->inventory}}" class="form-control" placeholder="@lang("Inventory")" required="">
                                                         </div>
                                                         <div class="col-xl-2 col-lg-2">
                                                             <a href="javascript:void(0)" class="btn btn-sm btn-info" onclick="updateVerity({{$verity->id}})">@lang('Update')</a>
@@ -373,7 +373,7 @@
                         <input type="text" name="product_name[]" maxlength="255" value="{{old('product_name')}}" class="form-control" placeholder="@lang("Product Name")" required="">
                     </div>
                     <div class="col-xl-3 col-lg-3">
-                        <input type="text" name="inventory[]" maxlength="255" value="{{old('inventory')}}" class="form-control" placeholder="@lang("Stock")" required="">
+                        <input type="text" name="inventory[]" maxlength="255" value="{{old('inventory')}}" class="form-control" placeholder="@lang("Inventory")" required="">
                     </div>
                     <div class="col-xl-2 col-lg-2">
                         <button class="btn btn--danger text-white border--rounded removeExtraVerities"><i class="fa fa-times"></i></button>

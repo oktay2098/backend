@@ -58,9 +58,9 @@ class UserController extends Controller
         $totalReferrals = User::where('ref_by', $user->id)->count();
         $reward = Reward::where('reward_category', '5')->where('end_date', '>=', date('Y-m-d'))->first(); // 5= Referral
         $profitAbleReferral = 0;
-        $totalRewaredReferrals = 0;
-        $leftReferrals = 0;
-        $totalProfitFromReferral = 0;
+        $totalRewaredReferrals=0;
+        $leftReferrals=0;
+        $totalProfitFromReferral =0;
         if ($reward) {
             $profitAbleReferral = round($totalReferrals / $reward->number_of_referrals);
             $totalProfitFromReferral = $profitAbleReferral * $reward->profit;
@@ -69,7 +69,7 @@ class UserController extends Controller
         }
         $rewards = Reward::where('reward_category', '5')
             ->where('end_date', '>=', date('Y-m-d'))
-            ->get(); // 5= Referral
+            ->get();        // 5= Referral
 
         $totalReward = RewardReview::where('user_id', $user->id)->where('status', 1)->sum('total_profit_amount');
         /*0=pending,1=approved,2=declined*/
@@ -96,7 +96,7 @@ class UserController extends Controller
     public function submitProfile(Request $request)
     {
 
-        $countryData = (array) json_decode(file_get_contents(resource_path('views/partials/country.json')));
+        $countryData = (array)json_decode(file_get_contents(resource_path('views/partials/country.json')));
         $countryCodes = implode(',', array_keys($countryData));
         $mobileCodes = implode(',', array_column($countryData, 'dial_code'));
         $countries = implode(',', array_column($countryData, 'country'));
@@ -334,7 +334,7 @@ class UserController extends Controller
 
         $withdraw->status = 2;
         $withdraw->save();
-        $user->balance -= $withdraw->amount;
+        $user->balance  -=  $withdraw->amount;
         $user->save();
 
 
@@ -346,7 +346,7 @@ class UserController extends Controller
         $transaction->charge = $withdraw->charge;
         $transaction->trx_type = '-';
         $transaction->details = getAmount($withdraw->final_amount) . ' ' . $withdraw->currency . ' Withdraw Via ' . $withdraw->method->name;
-        $transaction->trx = $withdraw->trx;
+        $transaction->trx =  $withdraw->trx;
         $transaction->save();
 
         $adminNotification = new AdminNotification();
@@ -374,7 +374,6 @@ class UserController extends Controller
 
     public function withdrawLog()
     {
-       
         $pageTitle = "Withdraw Log";
         $withdraws = Withdrawal::where('user_id', Auth::id())->where('status', '!=', 0)->with('method')->orderBy('id', 'desc')->paginate(getPaginate());
         $emptyMessage = "No data found";
@@ -382,20 +381,6 @@ class UserController extends Controller
         return view($this->activeTemplate . 'user.withdraw.log', compact('pageTitle', 'withdraws', 'emptyMessage'));
     }
 
-
-  public function history()
-    {
-        $user = Auth::user();
-
-        $pageTitle = "History";
-        $withdraws = Withdrawal::where('user_id', Auth::id())->where('status', '!=', 0)->with('method')->orderBy('id', 'desc')->paginate(getPaginate());
-        $logs = auth()->user()->deposits()->with(['gateway'])->orderBy('id', 'desc')->paginate(getPaginate());
-        $transactions = Transaction::where('user_id', $user->id)->paginate(getPaginate());
-        
-        $emptyMessage = "No data found";
-        $data['emptyMessage'] = "No Data Found!";
-        return view($this->activeTemplate . 'user.log.payment', compact('pageTitle', 'withdraws', 'emptyMessage','logs','transactions'));
-    }
 
     public function show2faForm()
     {

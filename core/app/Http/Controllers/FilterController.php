@@ -252,18 +252,6 @@ class FilterController extends Controller
         return view($this->activeTemplate . 'software', compact('softwares', 'pageTitle', 'emptyMessage', 'search','categorys'));
     }
 
-       public function softwareCountrySearch(Request $request)
-    {
-        $pageTitle = "Software search";
-        $emptyMessage = "No data found";
-        $ctry = $request->ctr;
-        $categorys = Category::where('type', 2)->where('status', 1)->orderby('id', 'DESC')->inRandomOrder()->get();
-        $softwares = Software::where('status', 1)->whereHas('category', function($q){
-                $q->where('status', 1);
-            })->where('available_in_country', 'LIKE', "%$ctry%")->with('user')->paginate(getPaginate());
-        return view($this->activeTemplate . 'software', compact('softwares', 'pageTitle', 'emptyMessage', 'ctry','categorys'));
-    }
-
     public function jobItemSearch(Request $request)
     {
         $level = null;

@@ -157,8 +157,6 @@ class SiteController extends Controller
         $softwares = Software::where('status', 1)->whereHas('category', function ($q) {
             $q->where('status', 1);
         })->with('user', 'user.rank')->latest()->paginate(getPaginate());
-
-        // $countriesls=Software::select('available_in_country',Software::raw('count(available_in_country) as ct'))->groupBy('available_in_country')->orderBy(Software::raw('count(available_in_country) as ct'),'desc')->get();
         return view($this->activeTemplate . 'software', compact('pageTitle', 'softwares', 'emptyMessage','categorys'));
     }
 

@@ -134,7 +134,7 @@ class SoftwareController extends Controller
         }
         $software->updated_at = Carbon::now();
         $software->save();
-        $software->featuresSoftware()->attach($request->features);
+        $software-> ()->attach($request->features);
         if($request->screenshot){
         	$screenshot = array_filter($request->screenshot);
         	$this->screenshotImageStore($request, $screenshot, $software->id);

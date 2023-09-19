@@ -1,42 +1,14 @@
 
 <div class="col-xl-3 col-lg-3 mb-30">
     <div class="sidebar">
-        {{-- <div class="widget mb-30">
+        <div class="widget mb-30">
             <h3 class="widget-title">@lang('CATEGORIES')</h3>
             <ul class="category-list">
                 @foreach($categorys as $category)
                     <li><a href="{{route('software.category', [slug($category->name),$category->id])}}">{{__($category->name)}}</a></li>
                 @endforeach
             </ul>
-        </div> --}}
-
-            <div class="widget mb-30">
-                <h3 class="widget-title">@lang('FILTER BY COUNTRY')</h3>
-                <div class="form-group">
-                    {{-- @foreach($countriesls as $key => $value)
-                    {{ $key }} {{ $value }}
-                    @endforeach --}}
-
-                    <select class="form-control select2" id="filter_by_country" style="padding:20px;">
-                            <option value="">Search</option>
-                             @php 
-                                $ca=array();
-                            @endphp
-                            @foreach($countriesls as $key => $value)
-                            <option value="{{ $key }}" @if(isset($ctry)) @if($key==$ctry) selected @endif @endif  >{{ __($key) }}</option>
-                            @php 
-                                array_push($ca,$key);
-                            @endphp
-                            @endforeach
-
-                            @foreach($countries as $key => $country)
-                                @if (!in_array($country->country, $ca))
-                                    <option value="{{ $country->country }}" @if(isset($ctry)) @if($country->country==$ctry) selected @endif @endif  >{{ __($country->country) }}</option>
-                                @endif
-                            @endforeach
-                    </select>
-                </div>
-            </div>
+        </div>
 
         <form action="{{route('software.search.filter')}}" method="GET">
             <div class="widget mb-30">
@@ -57,7 +29,7 @@
                 @endforeach
             </div>
 
-            {{-- <div class="widget mb-30">
+            <div class="widget mb-30">
                 <h3 class="widget-title">@lang('SERVICE INCLUDES')</h3>
                 @foreach($features as $feature)
                     <div class="form-group custom-check-group">
@@ -73,7 +45,7 @@
                         <label for="{{$feature->id}}.'f'">{{__($feature->name)}}</label>
                     </div>
                 @endforeach
-            </div> --}}
+            </div>
 
             <div class="widget mb-30">
                 <h3 class="widget-title">@lang('FILTER BY PRICE')</h3>
@@ -121,12 +93,6 @@
     </div>
 </div>
 
-@push('style-lib')
-    <link rel="stylesheet" href="{{asset($activeTemplateTrue.'frontend/css/select2.min.css')}}">
-@endpush
-@push('script-lib')
-    <script src="{{asset($activeTemplateTrue.'frontend/js/select2.min.js')}}"></script>
-@endpush
 
 @push('script')
 <script>
@@ -180,19 +146,5 @@
       }
     });
     $("#amount").val("$" + $("#slider-range").slider("values", 0) + " - $" + $("#slider-range").slider("values", 1));
-
-
-    $('#filter_by_country').on('change', function(){
-        var ctry=$('#filter_by_country').val();
-        if(ctry!=""){
-            location.replace("/product/search/country?ctr="+ctry);
-        }else{
-            location.replace("/product");
-        }
-    });
-
-    $(".select2").select2({ theme: "classic"});
-    
-    
 </script>
 @endpush

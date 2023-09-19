@@ -6,7 +6,6 @@
             <div class="dashboard-sidebar-wrapper-inner">
                 <div>
                     <div class="d-flex justify-content-center">
-                        
                         <a href="{{ route('profile', auth()->user()->username) }}">
                             <img class="sidebar-profile"
                                 src="{{ getImage('assets/images/user/profile/' . auth()->user()->image, '400x400') }}"
@@ -25,22 +24,29 @@
                             <i class="lab la-buffer"></i> <span class="title">@lang('Dashboard')</span>
                         </a>
                     </li>
-
-
                     <li
-                    class="sidebar-single-menu nav-item {{
-                         request()->routeIs('user.service.index') || request()->routeIs('user.service.edit') ||
-                         request()->routeIs('user.software.index') || request()->routeIs('user.software.edit') ||
-                         request()->routeIs('user.blog') || 
-                         request()->routeIs('user.job.index') || request()->routeIs('user.job.edit')
-                         ? 'open' : '' 
-                        
-                        }}">
-                    <a href="{{ route('user.service.index') }}">
-                        <i class="las la-list"></i> <span class="title">@lang('Manage Postes')</span>
-                    </a>
-                </li>
-                
+                        class="sidebar-single-menu nav-item {{ request()->routeIs('user.service.index') || request()->routeIs('user.service.edit') ? 'open' : '' }}">
+                        <a href="{{ route('user.service.index') }}">
+                            <i class="las la-list"></i> <span class="title">@lang('Manage Services')</span>
+                        </a>
+                    </li>
+                    <li
+                        class="sidebar-single-menu nav-item {{ request()->routeIs('user.software.index') || request()->routeIs('user.software.edit') ? 'open' : '' }}">
+                        <a href="{{ route('user.software.index') }}">
+                            <i class="lab la-microsoft"></i> <span class="title">@lang('Manage Product')</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-single-menu nav-item {{ request()->routeIs('user.blog') ? 'open' : '' }}">
+                        <a href="{{ route('user.blog') }}">
+                            <i class="las la-blog"></i> <span class="title">@lang('Manage Blogs')</span>
+                        </a>
+                    </li>
+                    <li
+                        class="sidebar-single-menu nav-item {{ request()->routeIs('user.job.index') || request()->routeIs('user.job.edit') ? 'open' : '' }}">
+                        <a href="{{ route('user.job.index') }}">
+                            <i class="las la-list"></i> <span class="title">@lang('Manage Job')</span>
+                        </a>
+                    </li>
                 </ul>
 
                 <h5 class="menu-header-title">@lang('Tools')</h5>

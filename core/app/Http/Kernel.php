@@ -74,7 +74,7 @@ class Kernel extends HttpKernel
         'staff.guest' => \App\Http\Middleware\RedirectifStaff::class,
 
         'staffaccess' => \App\Http\Middleware\StaffAccess::class,
-        'setapplang' => \App\Http\Middleware\SetAppLang::class,
+
         'regStatus' => \App\Http\Middleware\AllowRegistration::class,
         'checkStatus' => \App\Http\Middleware\CheckStatus::class,
         'checkStatusApi' => \App\Http\Middleware\CheckStatusApi::class,

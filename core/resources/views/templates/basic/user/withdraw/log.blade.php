@@ -16,7 +16,7 @@
                                     <table class="custom-table">
                                         <thead>
                                             <tr>
-                                                <th>@lang('Transaction ID ')</th>
+                                                <th>@lang('Transaction ID')</th>
                                                 <th>@lang('Gateway')</th>
                                                 <th>@lang('Amount')</th>
                                                 <th>@lang('Charge')</th>
