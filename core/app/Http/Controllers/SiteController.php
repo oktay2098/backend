@@ -44,6 +44,9 @@ class SiteController extends Controller
         })->with('user', 'user.rank')->paginate($perPage, ['*'], 'page', $page)->toArray();
         foreach($services['data'] as &$item){
             $item['type'] = 'service';
+            
+            $softwareAmount = app()->call('App\Http\Controllers\SoftwareBuyController@convertCurrency',  [ "amount" => $item['price'] ]);
+            $item['price'] = $softwareAmount;
         } 
         //products
         $softwares = Software::where('status', 1)->orderBy('created_at','DESC')->whereHas('category', function ($q) {
@@ -51,6 +54,9 @@ class SiteController extends Controller
         })->with('user', 'user.rank')->select(['*','amount as price'])->paginate($perPage, ['*'], 'page', $page)->toArray();
         foreach($softwares['data'] as &$item){
             $item['type'] = 'product';
+            
+            $softwareAmount = app()->call('App\Http\Controllers\SoftwareBuyController@convertCurrency',  [ "amount" => $item['amount'] ]);
+            $item['amount'] = $softwareAmount;
         } 
         //jobs
         $jobs = Job::where('status', 1)->orderBy('created_at','DESC')->whereHas('category', function ($q) {
@@ -59,6 +65,8 @@ class SiteController extends Controller
 
         foreach($jobs['data'] as &$item){
             $item['type'] = 'job';
+            $softwareAmount = app()->call('App\Http\Controllers\SoftwareBuyController@convertCurrency',  [ "amount" => $item['amount'] ]);
+            $item['amount'] = $softwareAmount;
             $item['price'] = $item['amount'];
         } 
         
