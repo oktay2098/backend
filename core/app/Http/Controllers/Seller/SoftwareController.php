@@ -14,6 +14,7 @@ use App\Models\ProductInventory;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Category;
+use App\Models\SubCategory;
 
 class SoftwareController extends Controller
 {
