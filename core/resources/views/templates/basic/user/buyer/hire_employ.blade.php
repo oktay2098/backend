@@ -8,6 +8,24 @@
                 <div class="col-xl-9 col-lg-12 mb-30">
                     <div class="dashboard-sidebar-open"><i class="las la-bars"></i> @lang('Menu')</div>
                     <div class="table-section">
+                        <div class="row mb-10">
+                            <div class="col-lg-6 col-sm-6">
+                                <h2 class="page-title" style="font-size: 1.125rem;
+                                        display: inline-block;">Purchases</h2> > Staff List
+                            </div>
+                            <div class="col-xl-6">
+                                <ul class="nav nav-pills nav-fill"
+                                    style="padding: 10px 10px 10px 10px; border: 1px solid; border-radius: 5px;">
+                                    <li class="nav-item">
+                                        <a class="nav-link {{ request()->routeIs('user.buyer.hire.employ') || request()->routeIs('user.buyer.hire.employ.details') ? 'active' : '' }}" href="{{ route('user.buyer.hire.employ') }}">Staff List</a>
+                                    </li>
+                                    <li class="nav-item"><a class="nav-link {{ request()->routeIs('user.buyer.service.booked') || request()->routeIs('booked.service.details') ? 'active' : '' }}" href="{{ route('user.buyer.service.booked') }}">Reserved Services</a>
+                                    </li>
+                                    <li class="nav-item"><a class="nav-link {{ request()->routeIs('user.software.purchases') ? 'active' : '' }}" href="{{ route('user.software.purchases') }}">Product Buyer</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                         <div class="row justify-content-center">
                             <div class="col-xl-12">
                                 <div class="table-area">

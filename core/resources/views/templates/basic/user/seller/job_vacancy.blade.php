@@ -8,6 +8,24 @@
                 <div class="col-xl-9 col-lg-12 mb-30">
                     <div class="dashboard-sidebar-open"><i class="las la-bars"></i> @lang('Menu')</div>
                     <div class="table-section">
+                        <div class="row mb-10">
+                            <div class="col-lg-6 col-sm-6">
+                                <h2 class="page-title" style="font-size: 1.125rem;
+                                        display: inline-block;">Sales</h2>
+                            </div>
+                            <div class="col-xl-6">
+                                <ul class="nav nav-pills nav-fill"
+                                    style="padding: 10px 10px 10px 10px; border: 1px solid; border-radius: 5px;">
+                                    <li class="nav-item">
+                                        <a class="nav-link {{ request()->routeIs('user.booking.service') || request()->routeIs('user.booking.service.details') ? 'active' : '' }}" href="{{ route('user.booking.service') }}">Reserved Services</a>
+                                    </li>
+                                    <li class="nav-item"><a class="nav-link {{ request()->routeIs('user.software.sales') ? 'active' : '' }}" href="{{ route('user.software.sales') }}">Product Sales</a>
+                                    </li>
+                                    <li class="nav-item"><a class="nav-link {{ request()->routeIs('user.job.vacancy') || request()->routeIs('user.seller.job.list.details') ? 'active' : '' }}" href="{{ route('user.job.vacancy') }}">Job List</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                         <div class="row justify-content-center">
                             <div class="col-xl-12">
                                 <div class="table-area">

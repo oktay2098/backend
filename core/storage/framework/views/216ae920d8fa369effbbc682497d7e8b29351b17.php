@@ -80,7 +80,7 @@
                 <h5 class="menu-header-title"><?php echo app('translator')->get('Sales'); ?></h5>
                 <ul id="sidebar-main-menu" class="sidebar-main-menu">
                     <li
-                        class="sidebar-single-menu nav-item <?php echo e(request()->routeIs('user.booking.service') || request()->routeIs('user.booking.service.details') ? 'open' : ''); ?>">
+                            class="sidebar-single-menu nav-item <?php echo e(request()->routeIs('user.booking.service') || request()->routeIs('user.booking.service.details') ? 'open' : ''); ?>">
                         <a href="<?php echo e(route('user.booking.service')); ?>">
                             <i class="las la-exchange-alt"></i> <span class="title"><?php echo app('translator')->get('Manage Sales'); ?></span>
                         </a>
@@ -90,7 +90,7 @@
                 <h5 class="menu-header-title"><?php echo app('translator')->get('PURCHASES'); ?></h5>
                 <ul id="sidebar-main-menu" class="sidebar-main-menu">
                     <li
-                        class="sidebar-single-menu nav-item <?php echo e(request()->routeIs('user.buyer.hire.employ') || request()->routeIs('user.buyer.hire.employ.details') ? 'open' : ''); ?>">
+                            class="sidebar-single-menu nav-item <?php echo e(request()->routeIs('user.buyer.hire.employ') || request()->routeIs('user.buyer.hire.employ.details') ? 'open' : ''); ?>">
                         <a href="<?php echo e(route('user.buyer.hire.employ')); ?>">
                             <i class="lab la-hire-a-helper"></i> <span class="title"><?php echo app('translator')->get('Manage Purchases'); ?></span>
                         </a>
@@ -140,4 +140,4 @@
 
     </div>
 </div>
-<?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/backend/core/resources/views/templates/basic/partials/seller_sidebar.blade.php ENDPATH**/ ?>
+<?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/backend/core/resources/views/templates/basic/partials/buyer_sidebar.blade.php ENDPATH**/ ?>

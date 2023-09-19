@@ -80,47 +80,19 @@
                 <h5 class="menu-header-title">@lang('Sales')</h5>
                 <ul id="sidebar-main-menu" class="sidebar-main-menu">
                     <li
-                        class="sidebar-single-menu nav-item {{ request()->routeIs('user.booking.service') || request()->routeIs('user.booking.service.details') ? 'open' : '' }}">
+                            class="sidebar-single-menu nav-item {{ request()->routeIs('user.booking.service') || request()->routeIs('user.booking.service.details') ? 'open' : '' }}">
                         <a href="{{ route('user.booking.service') }}">
-                            <i class="las la-exchange-alt"></i> <span class="title">@lang('Service Booking')</span>
+                            <i class="las la-exchange-alt"></i> <span class="title">@lang('Manage Sales')</span>
                         </a>
                     </li>
-                    <li
-                        class="sidebar-single-menu nav-item {{ request()->routeIs('user.software.sales') ? 'open' : '' }}">
-                        <a href="{{ route('user.software.sales') }}">
-                            <i class="las la-history"></i> <span class="title">@lang('Product Sales')</span>
-                        </a>
-                    </li>
-                    <li
-                        class="sidebar-single-menu nav-item {{ request()->routeIs('user.job.vacancy') || request()->routeIs('user.seller.job.list.details') ? 'open' : '' }}">
-                        <a href="{{ route('user.job.vacancy') }}">
-                            <i class="las la-caret-square-up"></i> <span class="title">@lang('Job List')</span>
-                        </a>
-                    </li>
-
-
                 </ul>
 
                 <h5 class="menu-header-title">@lang('PURCHASES')</h5>
                 <ul id="sidebar-main-menu" class="sidebar-main-menu">
-
                     <li
-                        class="sidebar-single-menu nav-item {{ request()->routeIs('user.buyer.hire.employ') || request()->routeIs('user.buyer.hire.employ.details') ? 'open' : '' }}">
+                            class="sidebar-single-menu nav-item {{ request()->routeIs('user.buyer.hire.employ') || request()->routeIs('user.buyer.hire.employ.details') ? 'open' : '' }}">
                         <a href="{{ route('user.buyer.hire.employ') }}">
-                            <i class="lab la-hire-a-helper"></i> <span class="title">@lang('Employees List')</span>
-                        </a>
-                    </li>
-
-                    <li
-                        class="sidebar-single-menu nav-item {{ request()->routeIs('user.buyer.service.booked') || request()->routeIs('user.booking.service.details') ? 'open' : '' }}">
-                        <a href="{{ route('user.buyer.service.booked') }}">
-                            <i class="las la-exchange-alt"></i> <span class="title">@lang('Service Booked')</span>
-                        </a>
-                    </li>
-                    <li
-                        class="sidebar-single-menu nav-item {{ request()->routeIs('user.software.purchases') ? 'open' : '' }}">
-                        <a href="{{ route('user.software.purchases') }}">
-                            <i class="las la-history"></i> <span class="title">@lang('Product Purchases')</span>
+                            <i class="lab la-hire-a-helper"></i> <span class="title">@lang('Manage Purchases')</span>
                         </a>
                     </li>
                 </ul>
